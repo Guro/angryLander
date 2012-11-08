@@ -1,11 +1,18 @@
 package
 {
+	import com.greensock.TweenLite;
+	import com.greensock.easing.Bounce;
 	import com.joeonmars.camerafocus.StarlingCameraFocus;
 	
 	import flash.display.MovieClip;
 	
 	import Objects.Player;
 	
+	import nape.callbacks.CbEvent;
+	import nape.callbacks.CbType;
+	import nape.callbacks.InteractionCallback;
+	import nape.callbacks.InteractionListener;
+	import nape.callbacks.InteractionType;
 	import nape.dynamics.InteractionFilter;
 	import nape.geom.Vec2;
 	import nape.phys.Body;
@@ -40,8 +47,11 @@ package
 		public var stageCont:Sprite;
 		public var camera:StarlingCameraFocus;
 		
-		//Interaction Filters
-		//public var sensorFilter:InteractionFilter = new InteractionFilter(0,0,1);
+		// Physics Listeners
+		public var collision:CbType = new CbType();
+		public var sensor:CbType = new CbType();
+		public var itListener:InteractionListener;
+		public var itListenerSensor:InteractionListener;
 		
 		public function Main()
 		{
@@ -67,14 +77,11 @@ package
 			space 		= new Space(new Vec2(0,300));
 			space.worldLinearDrag = 1;
 			space.worldAngularDrag = 1;
-			
+			this.initPyListeners();
 			
 			// Debug Draw
 			this.debugDraw();
-			
-			var floor:Body = new Body(BodyType.STATIC);
-			floor.shapes.add(new Polygon(Polygon.rect(-100,760,1200,200))); 	//bottom
-			floor.space = space;
+		
 			
 			addEventListener(Event.ENTER_FRAME, loop)
 			
@@ -97,8 +104,6 @@ package
 			//Sounds.playSound("loopSound",9999);
 			
 		}
-		
-		
 		
 		// Create Controls
 		private function createControls():void
@@ -146,6 +151,25 @@ package
 			MovieClipDebug.addChild(debug.display);
 			Starling.current.nativeOverlay.addChild(MovieClipDebug);
 		}
-	
+		
+		// Phisics listeners
+		private function initPyListeners():void
+		{	
+			this.itListener = new InteractionListener(CbEvent.ONGOING, InteractionType.COLLISION,this.collision,this.collision,crashCollision);
+			this.space.listeners.add(itListener);
+			
+			this.itListenerSensor = new InteractionListener(CbEvent.ONGOING,InteractionType.SENSOR,this.sensor,this.collision,pyFinishTouch);
+			this.space.listeners.add(itListenerSensor);
+		}
+		
+		private function pyFinishTouch(cb:InteractionCallback):void
+		{	
+			this.dispatchEvent(new Event("pyFinishTouch"));
+		}
+		
+		private function crashCollision(cb:InteractionCallback):void
+		{
+			this.dispatchEvent(new Event("pyCrashCollision"));
+		}
 	}
 }

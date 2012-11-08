@@ -77,7 +77,10 @@ package Objects
 			this.body.graphic 			= container;
 			this.body.graphicUpdate 	= updateGraphics;
 			
+			// Add cbTypes
 			
+			this.body.cbTypes.add(main.collision);
+			this.body.cbTypes.add(main.sensor);
 			
 			addChild(this.body.graphic);
 		}

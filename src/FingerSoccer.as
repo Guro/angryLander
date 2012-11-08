@@ -12,7 +12,7 @@ package
 	{
 		public function FingerSoccer()
 		{
-			trace("STARLING IS COMING");
+			trace("STARLING IS COMING 2");
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			
