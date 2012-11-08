@@ -34,7 +34,7 @@ package Objects
 		public var mParticleSystem:PDParticleSystem;
 		public var options:Object;
 		public var fuel:Number = 100;
-		public var fuelConsumption:Number = 0.1;
+		public var fuelConsumption:Number = 0.05;
 		
 		public var container:Sprite;
 		private var main:Main;
@@ -111,7 +111,7 @@ package Objects
 		
 		public function moveLeft():void
 		{
-			this.body.applyLocalForce(new Vec2(-600,-2500),new Vec2(0,0));
+			this.body.applyLocalForce(new Vec2(-1000,-2200),new Vec2(0,0));
 			this.startParticles();
 			//this.body.rotation = -0.1;
 			this.body.graphic.scaleX = -1;
@@ -121,7 +121,7 @@ package Objects
 		
 		public function moveRight():void
 		{
-			this.body.applyLocalForce(new Vec2(600,-2500),new Vec2(0,0));
+			this.body.applyLocalForce(new Vec2(1000,-2200),new Vec2(0,0));
 			this.startParticles();
 			this.body.graphic.scaleX = 1;
 			TweenLite.to(this.body,1,{rotation:0.3});
