@@ -120,6 +120,8 @@ package
 			// TODO Auto Generated method stub
 			trace("Finish Touched Inside Level Controller");
 			main.space.listeners.remove(main.itListenerSensor);
+			TweenLite.to(main.player,1,{alpha:0,delay:1.5});
+			TweenLite.to(platform.body.graphic,1,{alpha:0,delay:1.5});
 		}
 		
 		private function crashCollision(e:Event):void

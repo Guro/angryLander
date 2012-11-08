@@ -4,7 +4,6 @@ package Objects
 	import com.greensock.easing.Bounce;
 	import com.greensock.easing.Elastic;
 	
-	
 	import nape.callbacks.CbType;
 	import nape.callbacks.InteractionListener;
 	import nape.dynamics.InteractionFilter;
@@ -65,28 +64,30 @@ package Objects
 			
 			
 			//Create Physics Body
-			this.body = new Body(BodyType.STATIC,new Vec2(options.x,options.y));
-			this.body.shapes.add(new Polygon(Polygon.rect(-75,-10,150,20),new Material(0)));
-			this.body.space = space;
+//			this.body = new Body(BodyType.STATIC,new Vec2(options.x,options.y));
+//			this.body.shapes.add(new Polygon(Polygon.rect(-75,-10,150,20),new Material(0)));
+//			this.body.space = space;
+//			this.body.graphic 			= container;
+//			this.body.graphicUpdate 	= updateGraphics;
+//			this.body.cbTypes.add(main.collision);
+			
+		
+			
+			this.body = PyDataPlatform.createBody("platform");
+			this.body.position = new Vec2(options.x,options.y);
+			this.body.space   = space;
+			this.body.cbTypes.add(main.collision);
 			this.body.graphic 			= container;
 			this.body.graphicUpdate 	= updateGraphics;
-			this.body.cbTypes.add(main.collision);
 			
-			var fn:Body = new Body(BodyType.STATIC,new Vec2(options.x,options.y-5));
+			var fn:Body = new Body(BodyType.STATIC,new Vec2(options.x,options.y-20));
 			var p:Polygon = new Polygon(Polygon.rect(-20,-5,40,10),null,new InteractionFilter(0));
 			fn.shapes.add(p);
 			fn.space = space;
 			fn.cbTypes.add(main.sensor);
 			
 			
-			/*
-			var mount:Body = PhysicsData.createBody("mountain");
-			mount.graphic = Image.fromBitmap(new test());
-			mount.space   = space;
-			mount.cbTypes.add(main.collision);
-			mount.graphicUpdate = updateGraphics2;
-			addChild(mount.graphic);
-			*/
+					
 			
 			
 			addChild(this.body.graphic);
@@ -99,13 +100,6 @@ package Objects
 			b.graphic.x 		= b.position.x;
 			b.graphic.y 		= b.position.y;
 			b.graphic.rotation	= b.rotation;
-		}
-		
-		private function updateGraphics2(b:Body):void
-		{
-			b.graphic.x 		= b.position.x-b.bounds.width/2;
-			b.graphic.y 		= (b.position.y-b.bounds.height/2)-23;
-			b.graphic.rotation	= b.rotation/2;
 		}
 	
 	
