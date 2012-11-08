@@ -1,0 +1,10 @@
+<level width="1024" height="768">
+  <Objects>
+    <player id="0" x="80" y="80" />
+    <platform id="1" x="100" y="480" />
+    <coin id="2" x="256" y="400" />
+    <coin id="3" x="480" y="240" />
+    <coin id="4" x="672" y="400" />
+    <coin id="5" x="928" y="432" />
+  </Objects>
+</level>
