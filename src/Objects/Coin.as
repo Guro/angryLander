@@ -58,6 +58,7 @@ package Objects
 								});
 				this.dispose();
 				Sounds.playSound("popSound");
+				main.dispatchEvent(new Event("coinCollected"));
 			}
 		}
 	}

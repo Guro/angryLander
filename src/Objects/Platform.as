@@ -79,14 +79,14 @@ package Objects
 			fn.cbTypes.add(main.sensor);
 			
 			
-			
+			/*
 			var mount:Body = PhysicsData.createBody("mountain");
 			mount.graphic = Image.fromBitmap(new test());
 			mount.space   = space;
 			mount.cbTypes.add(main.collision);
 			mount.graphicUpdate = updateGraphics2;
 			addChild(mount.graphic);
-			
+			*/
 			
 			
 			addChild(this.body.graphic);

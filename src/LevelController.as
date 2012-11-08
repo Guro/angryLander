@@ -30,8 +30,8 @@ package
 		public var player:Player;
 		public var platform:Platform;
 		public var coins:Sprite;
-		
 		public var main:Main;
+		public var score:Number = 0;
 		
 		private var _xml:XML;
 		private var goodLanding:Boolean = false;
@@ -55,7 +55,6 @@ package
 		public function loadLevel():void
 		{
 			this.createPlayer();
-			this.createPlatform();
 			this.createCoins();
 			
 			// Create Floor
@@ -63,11 +62,6 @@ package
 			floor.shapes.add(new Polygon(Polygon.rect(-100,760,1200,200))); 	//bottom
 			floor.space = main.space;
 			floor.cbTypes.add(main.collision);
-			
-			// Move Particles to front
-			swapChildren(player, platform);
-			
-			
 		}
 		
 		// Create Coins
@@ -84,6 +78,15 @@ package
 				coins.addChild(coin);
 			}
 			addChild(coins);
+			main.addEventListener("coinCollected",coinCollected);
+		}
+		
+		private function coinCollected():void
+		{
+			score++;
+			trace("Score: "+score);
+			if(score == 2)
+				this.createPlatform();
 		}
 		
 		// Create Player
@@ -105,6 +108,8 @@ package
 				y:_xml.Objects.platform.attribute("y")
 			});
 			addChild(platform);
+			// Move Particles to front
+			swapChildren(player, platform);
 		}
 		
 		private function finishTouched(e:Event):void
