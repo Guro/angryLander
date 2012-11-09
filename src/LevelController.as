@@ -58,10 +58,10 @@ package
 			this.createCoins();
 			
 			// Create Floor
-			var floor:Body = new Body(BodyType.STATIC);
-			floor.shapes.add(new Polygon(Polygon.rect(-100,760,1200,200))); 	//bottom
-			floor.space = main.space;
-			floor.cbTypes.add(main.collision);
+			//var floor:Body = new Body(BodyType.STATIC);
+			//floor.shapes.add(new Polygon(Polygon.rect(-100,760,1200,200))); 	//bottom
+			//floor.space = main.space;
+			//floor.cbTypes.add(main.collision);
 		}
 		
 		// Create Coins
