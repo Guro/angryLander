@@ -11,11 +11,8 @@ package
 	import Objects.Platform;
 	import Objects.Player;
 	
-	import nape.callbacks.InteractionCallback;
 	import nape.geom.Vec2;
 	import nape.phys.Body;
-	import nape.phys.BodyType;
-	import nape.shape.Polygon;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -37,6 +34,7 @@ package
 		private var _xml:XML;
 		private var goodLanding:Boolean = false;
 		private var boomImage:Sprite;
+		private var finished:Boolean = false;
 		
 		public function LevelController(mn:Main)
 		{
@@ -58,11 +56,23 @@ package
 			this.createPlayer();
 			this.createCoins();
 			
+			
 			// Create Floor
 			//var floor:Body = new Body(BodyType.STATIC);
 			//floor.shapes.add(new Polygon(Polygon.rect(-100,760,1200,200))); 	//bottom
 			//floor.space = main.space;
 			//floor.cbTypes.add(main.collision);
+			
+			var b:Body = PyDataLv1.createBody("tmp");
+			b.position = new Vec2(1080,120);
+			b.space   = main.space;
+			b.cbTypes.add(main.collision);
+			
+			
+			var b2:Body = PyDataLv1.createBody("tmp2");
+			b2.position = new Vec2(895,615);
+			b2.space   = main.space;
+			b2.cbTypes.add(main.collision);
 			
 		}
 		
@@ -118,12 +128,17 @@ package
 		{
 			if(!this.goodLanding)
 				return;
+			if(this.finished)
+				return;
 			
-			// TODO Auto Generated method stub
 			trace("Finish Touched Inside Level Controller");
+			this.finished = true;
 			main.space.listeners.remove(main.itListenerSensor);
 			TweenLite.to(main.player,1,{alpha:0,delay:1.5});
 			TweenLite.to(platform.body.graphic,1,{alpha:0,delay:1.5});
+			
+			main.createLevel();
+			
 		}
 		
 		private function crashCollision(e:Event):void

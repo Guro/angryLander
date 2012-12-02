@@ -54,6 +54,7 @@ package
 		public var sensor:CbType = new CbType();
 		public var itListener:InteractionListener;
 		public var itListenerSensor:InteractionListener;
+		private var lv:LevelController;
 		
 		public function Main()
 		{
@@ -85,14 +86,11 @@ package
 			// Debug Draw
 			this.debugDraw();
 		
-			
+			// Enter Frame Loop	
 			addEventListener(Event.ENTER_FRAME, loop)
 			
-			
-			// Level Controller
-			var lv:LevelController = new LevelController(this);
-			lv.loadLevel();
-			stageCont.addChild(lv);
+			// Generate Level
+			this.createLevel();
 			
 			
 			
@@ -108,21 +106,12 @@ package
 			
 			
 			//Sounds.playSound("loopSound",9999);
-			//camera.zoomFocus(1);
+			//camera.zoomFocus(0.7);
 			camera.setBoundary(tmpImg);
 			
 			
 			
-			var b:Body = PyDataLv1.createBody("tmp");
-			b.position = new Vec2(1080,120);
-			b.space   = space;
-			b.cbTypes.add(collision);
 			
-			
-			b = PyDataLv1.createBody("tmp2");
-			b.position = new Vec2(895,615);
-			b.space   = space;
-			b.cbTypes.add(collision);
 			
 		}
 		
@@ -133,6 +122,35 @@ package
 			Starling.current.stage.addChild(controls);
 		}
 		
+		
+		// Create Level
+		public function createLevel():void
+		{
+			// Reset Level If Exists
+			if(lv)
+			{
+				lv.dispose();
+				stageCont.removeChild(lv);
+				lv = null;
+				space.clear();
+				space = null;
+				space 		= new Space(new Vec2(0,300));
+				space.worldLinearDrag = 1;
+				space.worldAngularDrag = 1;
+				this.initPyListeners();
+			}
+			
+			
+			//Create Level
+			lv = new LevelController(this);
+			lv.loadLevel();
+			stageCont.addChild(lv);
+			
+			
+			
+			if(camera)
+				camera.focusTarget = player.container;
+		}
 	
 	
 		// Main Loop

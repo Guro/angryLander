@@ -8,11 +8,8 @@ package Objects
 	import nape.phys.BodyType;
 	import nape.phys.Material;
 	import nape.shape.Circle;
-	import nape.shape.Polygon;
-	import nape.space.Space;
 	
 	import starling.core.Starling;
-	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.extensions.PDParticleSystem;
@@ -53,7 +50,7 @@ package Objects
 			var drugsTexture:Texture = Texture.fromBitmap(new windParticle());
 			
 			mParticleSystem = new PDParticleSystem(drugsConfig, drugsTexture);
-			addChild(mParticleSystem);
+//			addChild(mParticleSystem);
 			mParticleSystem.alpha = 0.5;
 			
 			var playerImage:Image = new Image(Assets.getAtlas().getTexture("pl"));
