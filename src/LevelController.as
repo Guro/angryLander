@@ -12,6 +12,7 @@ package
 	import Objects.Player;
 	
 	import nape.callbacks.InteractionCallback;
+	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
 	import nape.shape.Polygon;
@@ -62,6 +63,7 @@ package
 			//floor.shapes.add(new Polygon(Polygon.rect(-100,760,1200,200))); 	//bottom
 			//floor.space = main.space;
 			//floor.cbTypes.add(main.collision);
+			
 		}
 		
 		// Create Coins

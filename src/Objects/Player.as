@@ -112,6 +112,9 @@ package Objects
 		public function moveLeft():void
 		{
 			this.body.applyLocalForce(new Vec2(-1000,-2200),new Vec2(0,0));
+			
+			
+			
 			this.startParticles();
 			//this.body.rotation = -0.1;
 			this.body.graphic.scaleX = -1;

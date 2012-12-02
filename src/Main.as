@@ -99,21 +99,38 @@ package
 			// Camera
 			Starling.current.stage.addChild(stageCont);
 			camera = new StarlingCameraFocus( Starling.current.stage, stageCont,
-				player.container, [ {name:'bg',instance:bgImg,ratio:0.05}
+				player.container, [ {name:'bg',instance:bgImg,ratio:0.03}
 				], true );
 			//camera.setFocusPosition(0,0);
 			
 			this.createControls();
+			
+			
+			
 			//Sounds.playSound("loopSound",9999);
 			//camera.zoomFocus(1);
 			camera.setBoundary(tmpImg);
+			
+			
+			
+			var b:Body = PyDataLv1.createBody("tmp");
+			b.position = new Vec2(1080,120);
+			b.space   = space;
+			b.cbTypes.add(collision);
+			
+			
+			b = PyDataLv1.createBody("tmp2");
+			b.position = new Vec2(895,615);
+			b.space   = space;
+			b.cbTypes.add(collision);
+			
 		}
 		
 		// Create Controls
 		private function createControls():void
 		{
 			controls = new Controls(this); 
-			addChild(controls);
+			Starling.current.stage.addChild(controls);
 		}
 		
 	

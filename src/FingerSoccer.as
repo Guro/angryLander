@@ -15,7 +15,7 @@ package
 			trace("STARLING IS COMING 2");
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
-			
+			stage.color = 0x000000;
 			
 			var screenWidth:int  = stage.fullScreenWidth;
 			var screenHeight:int = stage.fullScreenHeight;

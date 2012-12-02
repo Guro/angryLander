@@ -87,7 +87,8 @@ package Objects
 			fn.cbTypes.add(main.sensor);
 			
 			
-					
+
+			
 			
 			
 			addChild(this.body.graphic);
