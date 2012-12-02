@@ -64,7 +64,10 @@ package
 		private function onAdded(e:Event):void
 		{
 			trace("Added To Stage");
-			stageCont = new Sprite();
+			stageCont = new Sprite()
+			stageCont.touchable = false;	
+				
+				;
 			var bgImg:Image = Image.fromBitmap(new bg());
 			//correct bg pos
 			bgImg.x = -50;
