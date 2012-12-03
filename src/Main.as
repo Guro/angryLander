@@ -1,7 +1,5 @@
 package
 {
-	import com.greensock.TweenLite;
-	import com.greensock.easing.Bounce;
 	import com.joeonmars.camerafocus.StarlingCameraFocus;
 	
 	import flash.display.MovieClip;
@@ -13,11 +11,7 @@ package
 	import nape.callbacks.InteractionCallback;
 	import nape.callbacks.InteractionListener;
 	import nape.callbacks.InteractionType;
-	import nape.dynamics.InteractionFilter;
 	import nape.geom.Vec2;
-	import nape.phys.Body;
-	import nape.phys.BodyType;
-	import nape.shape.Polygon;
 	import nape.space.Space;
 	import nape.util.ShapeDebug;
 	
@@ -66,8 +60,8 @@ package
 			trace("Added To Stage");
 			stageCont = new Sprite()
 			stageCont.touchable = false;	
-				
-				;
+			
+			
 			var bgImg:Image = Image.fromBitmap(new bg());
 			//correct bg pos
 			bgImg.x = -50;
@@ -88,7 +82,7 @@ package
 			
 			// Debug Draw
 			this.debugDraw();
-		
+			
 			// Enter Frame Loop	
 			addEventListener(Event.ENTER_FRAME, loop)
 			
@@ -154,8 +148,8 @@ package
 			if(camera)
 				camera.focusTarget = player.container;
 		}
-	
-	
+		
+		
 		// Main Loop
 		private function loop(e:Event):void
 		{			

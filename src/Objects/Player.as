@@ -50,7 +50,7 @@ package Objects
 			var drugsTexture:Texture = Texture.fromBitmap(new windParticle());
 			
 			mParticleSystem = new PDParticleSystem(drugsConfig, drugsTexture);
-//			addChild(mParticleSystem);
+			addChild(mParticleSystem);
 			mParticleSystem.alpha = 0.5;
 			
 			var playerImage:Image = new Image(Assets.getAtlas().getTexture("pl"));
@@ -108,7 +108,7 @@ package Objects
 		
 		public function moveLeft():void
 		{
-			this.body.applyLocalForce(new Vec2(-1000,-2200),new Vec2(0,0));
+			this.body.applyLocalForce(new Vec2(-1000,-1600),new Vec2(0,0));
 			
 			
 			
@@ -121,7 +121,7 @@ package Objects
 		
 		public function moveRight():void
 		{
-			this.body.applyLocalForce(new Vec2(1000,-2200),new Vec2(0,0));
+			this.body.applyLocalForce(new Vec2(1000,-1600),new Vec2(0,0));
 			this.startParticles();
 			this.body.graphic.scaleX = 1;
 			TweenLite.to(this.body,1,{rotation:0.3});

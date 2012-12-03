@@ -13,6 +13,8 @@ package
 	
 	import nape.geom.Vec2;
 	import nape.phys.Body;
+	import nape.phys.BodyType;
+	import nape.shape.Circle;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -23,6 +25,9 @@ package
 		
 		[Embed(source="assets/levels/level1.oel", mimeType="application/octet-stream")]
 		public static const level1:Class;
+		
+		[Embed(source="Assets/tmpStone.png")]
+		private var tmp:Class;
 		
 		
 		public var player:Player;
@@ -70,11 +75,33 @@ package
 			
 			
 			var b2:Body = PyDataLv1.createBody("tmp2");
-			b2.position = new Vec2(895,615);
+			b2.position = new Vec2(905,615);
 			b2.space   = main.space;
 			b2.cbTypes.add(main.collision);
 			
+			var bgImg:Image = Image.fromBitmap(new tmp());
+			//correct bg pos
+			addChild(bgImg);
+			bgImg.pivotX = 70;
+			bgImg.pivotY = 70;
+			
+			var floor:Body = new Body(BodyType.DYNAMIC,new Vec2(1000,200));
+			floor.shapes.add(new Circle(70)); 	//bottom
+			floor.space = main.space;
+			floor.mass = 1.5;
+			floor.graphic = bgImg;
+			floor.graphicUpdate = updateGraphics;
+			
 		}
+		
+		private function updateGraphics(b:Body):void
+		{
+			b.graphic.x 		= b.position.x;
+			b.graphic.y 		= b.position.y;
+			b.graphic.rotation	= b.rotation;
+			
+		}
+		
 		
 		// Create Coins
 		private function createCoins():void
