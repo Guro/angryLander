@@ -19,10 +19,13 @@ package
 		public var rightButton:Button;
 		public var main:Main;
 		public var gauge:Gauge;
+		public var hpGauge:Gauge;
 		
 		public function Controls(mn:Main)
 		{
 			main = mn;
+			
+			
 			
 			pivotX = width >> 1;
 			pivotY = height >>1;
@@ -30,16 +33,29 @@ package
 			// Gauge
 			gauge = new Gauge(Assets.getAtlas().getTexture("fuelBar"));
 			gauge.ratio = 1;
-			gauge.x 	= 500;
+			gauge.x 	= 400;
 			gauge.y		= 20;
 			addChild(gauge);
 			
 			//Gauge Border
 			var gb:Image = new Image(Assets.getAtlas().getTexture("fuelBorder"));
-			gb.x		= 500;
+			gb.x		= 400;
 			gb.y		= 20;
 			addChild(gb);
 			
+			
+			// Gauge
+			hpGauge = new Gauge(Assets.getAtlas().getTexture("fuelBar"));
+			hpGauge.ratio 	= 1;
+			hpGauge.x 		= 700;
+			hpGauge.y		= 20;
+			addChild(hpGauge);
+			
+			//Gauge Border
+			gb			= new Image(Assets.getAtlas().getTexture("fuelBorder"));
+			gb.x		= 700;
+			gb.y		= 20;
+			addChild(gb);
 			
 			
 			// Controls Container
@@ -49,8 +65,12 @@ package
 			
 			addChild(container);
 			
+			
+			
+			
 			upButton = new Button(Assets.getAtlas().getTexture("btUp"));
-			upButton.x		 	= 30;
+			upButton.x		 	= -850;
+			upButton.y		 	= 60;
 			container.addChild(upButton);
 			
 			leftButton = new Button(Assets.getAtlas().getTexture("btLeft"));
@@ -61,7 +81,6 @@ package
 			rightButton.y		 = 60;
 			rightButton.x		 = 60;
 			container.addChild(rightButton);
-			
 			
 			upButton.addEventListener(TouchEvent.TOUCH,onTouch);
 			leftButton.addEventListener(TouchEvent.TOUCH,onTouch);

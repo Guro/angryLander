@@ -175,6 +175,7 @@ package
 				this.goodLanding = true;
 			}else{
 				trace("crash");
+				player.consumeHP(34);
 				this.goodLanding = false;
 				this.boomImage.visible = true;
 				var t:Object = this;

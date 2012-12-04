@@ -64,8 +64,8 @@ package
 			
 			var bgImg:Image = Image.fromBitmap(new bg());
 			//correct bg pos
-			bgImg.x = -50;
-			bgImg.y = -50;
+			bgImg.x = -bgImg.width/2;
+			bgImg.y = 0;
 			addChild(bgImg);
 			
 			
@@ -94,7 +94,7 @@ package
 			// Camera
 			Starling.current.stage.addChild(stageCont);
 			camera = new StarlingCameraFocus( Starling.current.stage, stageCont,
-				player.container, [ {name:'bg',instance:bgImg,ratio:0.03}
+				player.container, [ {name:'bg',instance:bgImg,ratio:0.1}
 				], true );
 			//camera.setFocusPosition(0,0);
 			
@@ -159,6 +159,11 @@ package
 				playerAction();
 			}
 			if(player.fuel <= 0){
+				controls.disableControls();
+				controls.dispose();
+			}
+			
+			if(player.hp <= 0){
 				controls.disableControls();
 				controls.dispose();
 			}

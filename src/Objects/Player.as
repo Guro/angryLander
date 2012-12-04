@@ -31,6 +31,7 @@ package Objects
 		public var mParticleSystem:PDParticleSystem;
 		public var options:Object;
 		public var fuel:Number = 100;
+		public var hp:Number = 100;
 		public var fuelConsumption:Number = 0.05;
 		
 		public var container:Sprite;
@@ -92,6 +93,13 @@ package Objects
 			
 		}
 		
+		public function consumeHP(consume:Number):void
+		{
+			hp = hp - consume;
+			main.controls.hpGauge.ratio = hp/100;	
+			trace("Consume HP:"+hp);
+		}
+		
 		public function consumeFuel(consume:Number):void
 		{
 			fuel = fuel - consume;
@@ -100,7 +108,9 @@ package Objects
 		
 		public function moveUp():void
 		{
-			this.body.applyLocalForce(new Vec2(0,-3000),new Vec2(0,0));
+			//this.body.applyLocalForce(new Vec2(0,-3000),new Vec2(0,0));
+			this.body.applyLocalImpulse(new Vec2(0,-50), new Vec2(0,0));
+			
 			this.startParticles();
 			TweenLite.to(this.body,1,{rotation:0});
 			consumeFuel(fuelConsumption);
@@ -108,7 +118,8 @@ package Objects
 		
 		public function moveLeft():void
 		{
-			this.body.applyLocalForce(new Vec2(-1000,-1600),new Vec2(0,0));
+			//this.body.applyLocalForce(new Vec2(-1000,-1600),new Vec2(0,0));
+			this.body.applyLocalImpulse(new Vec2(-30,-30), new Vec2(0,0));
 			
 			
 			
@@ -121,7 +132,10 @@ package Objects
 		
 		public function moveRight():void
 		{
-			this.body.applyLocalForce(new Vec2(1000,-1600),new Vec2(0,0));
+			//this.body.applyLocalForce(new Vec2(1000,-1600),new Vec2(0,0));
+			this.body.applyLocalImpulse(new Vec2(30,-30), new Vec2(0,0));
+			
+			
 			this.startParticles();
 			this.body.graphic.scaleX = 1;
 			TweenLite.to(this.body,1,{rotation:0.3});
