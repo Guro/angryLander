@@ -81,6 +81,10 @@ package Objects
 			this.body.cbTypes.add(main.sensor);
 			
 			addChild(this.body.graphic);
+			
+			// Reset Fuel and HP Gauge
+//			main.controls.hpGauge.ratio = 1;
+//main.controls.gauge.ratio 	= 1;
 		}
 		
 		private function updateGraphics(b:Body):void
@@ -95,6 +99,7 @@ package Objects
 		
 		public function consumeHP(consume:Number):void
 		{
+			
 			hp = hp - consume;
 			main.controls.hpGauge.ratio = hp/100;	
 			trace("Consume HP:"+hp);

@@ -25,9 +25,6 @@ package
 		[Embed(source="Assets/bg.jpg")]
 		private var bg:Class;
 		
-		[Embed(source="Assets/tmp.png")]
-		private var tmp:Class;
-		
 		public var space:Space;
 		private var mouseX:Number;
 		private var mouseY:Number;
@@ -69,8 +66,7 @@ package
 			addChild(bgImg);
 			
 			
-			var tmpImg:Image = Image.fromBitmap(new tmp());
-			stageCont.addChild(tmpImg);
+			
 			
 			
 			
@@ -104,7 +100,7 @@ package
 			
 			//Sounds.playSound("loopSound",9999);
 			//camera.zoomFocus(0.7);
-			camera.setBoundary(tmpImg);
+			camera.setBoundary(lv.decorImage);
 			
 			
 			
@@ -140,7 +136,7 @@ package
 			
 			//Create Level
 			lv = new LevelController(this);
-			lv.loadLevel();
+			lv.loadLevel(1);
 			stageCont.addChild(lv);
 			
 			

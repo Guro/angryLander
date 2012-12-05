@@ -32,6 +32,7 @@ package
 			
 			// Gauge
 			gauge = new Gauge(Assets.getAtlas().getTexture("fuelBar"));
+
 			gauge.ratio = 1;
 			gauge.x 	= 400;
 			gauge.y		= 20;

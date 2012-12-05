@@ -6,10 +6,13 @@ package
 	import com.greensock.easing.Bounce;
 	
 	import flash.utils.ByteArray;
+	import flash.utils.getDefinitionByName;
 	
 	import Objects.Coin;
 	import Objects.Platform;
 	import Objects.Player;
+	
+	import assets.levels.level1Data;
 	
 	import nape.geom.Vec2;
 	import nape.phys.Body;
@@ -19,12 +22,20 @@ package
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
-
+	
 	public class LevelController extends Sprite
 	{
 		
 		[Embed(source="assets/levels/level1.oel", mimeType="application/octet-stream")]
 		public static const level1:Class;
+		private var level1DataClass:level1Data;
+		[Embed(source="assets/levels/level1Decor.png")]
+		public static const level1Decor:Class;
+		
+		
+		
+		
+		
 		
 		[Embed(source="Assets/tmpStone.png")]
 		private var tmp:Class;
@@ -35,18 +46,19 @@ package
 		public var coins:Sprite;
 		public var main:Main;
 		public var score:Number = 0;
+		public var levelNumber:int;
+		public var decorImage:Image;
+		
 		
 		private var _xml:XML;
 		private var goodLanding:Boolean = false;
 		private var boomImage:Sprite;
 		private var finished:Boolean = false;
 		
+		
 		public function LevelController(mn:Main)
 		{
 			main = mn;	
-			var contentfile:ByteArray = new level1();
-			var contentstr:String = contentfile.readUTFBytes( contentfile.length );
-			_xml =  new XML(contentstr);
 			
 			main.addEventListener("pyFinishTouch",finishTouched);
 			main.addEventListener("pyCrashCollision",crashCollision);
@@ -56,10 +68,20 @@ package
 		
 		
 		
-		public function loadLevel():void
+		public function loadLevel(lvlNumber:int):void
 		{
+			this.levelNumber = lvlNumber;
+			var contentfile:ByteArray = new LevelController["level"+this.levelNumber]();
+			var contentstr:String = contentfile.readUTFBytes( contentfile.length );
+			_xml =  new XML(contentstr);
+			
+			// Create Decor
+			decorImage = Image.fromBitmap(new LevelController["level"+this.levelNumber+"Decor"]());
+			this.main.stageCont.addChild(decorImage);
+			
 			this.createPlayer();
 			this.createCoins();
+			this.createMounts();
 			
 			
 			// Create Floor
@@ -68,22 +90,17 @@ package
 			//floor.space = main.space;
 			//floor.cbTypes.add(main.collision);
 			
-			var b:Body = PyDataLv1.createBody("tmp");
-			b.position = new Vec2(1080,120);
-			b.space   = main.space;
-			b.cbTypes.add(main.collision);
 			
 			
-			var b2:Body = PyDataLv1.createBody("tmp2");
-			b2.position = new Vec2(905,615);
-			b2.space   = main.space;
-			b2.cbTypes.add(main.collision);
-			
+			/*
+			Temporarry Stone
+			*/
 			var bgImg:Image = Image.fromBitmap(new tmp());
 			//correct bg pos
 			addChild(bgImg);
 			bgImg.pivotX = 70;
 			bgImg.pivotY = 70;
+			
 			
 			var floor:Body = new Body(BodyType.DYNAMIC,new Vec2(1000,200));
 			floor.shapes.add(new Circle(70)); 	//bottom
@@ -94,6 +111,25 @@ package
 			
 		}
 		
+		// Create obstacles
+		private function createMounts():void
+		{
+			// Get Level Data Class
+			var dataClass:Class = getDefinitionByName("assets.levels.level"+this.levelNumber+"Data") as Class;
+			
+			// Create Mounts
+			trace("Create Mounts:");
+			for each(var c:Object in _xml.Objects.mount)
+			{
+				trace(c.@id);
+				var b:Body = dataClass.createBody(c.@id);
+				b.position = new Vec2(c.@x,c.@y);
+				b.space   = main.space;
+				b.cbTypes.add(main.collision);
+			}	
+		}
+		
+		// Update Graphics for templorarry stone
 		private function updateGraphics(b:Body):void
 		{
 			b.graphic.x 		= b.position.x;
@@ -132,9 +168,9 @@ package
 		private function createPlayer():void
 		{
 			player = new Player(main,{
-					x:_xml.Objects.player.attribute("x"),
-					y:_xml.Objects.player.attribute("y")
-				});
+				x:_xml.Objects.player.attribute("x"),
+				y:_xml.Objects.player.attribute("y")
+			});
 			main.player = player;
 			addChild(player);
 		}

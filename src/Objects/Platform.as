@@ -1,8 +1,5 @@
 package Objects
 {
-	import com.greensock.TweenLite;
-	import com.greensock.easing.Bounce;
-	import com.greensock.easing.Elastic;
 	
 	import nape.callbacks.CbType;
 	import nape.callbacks.InteractionListener;
@@ -10,7 +7,6 @@ package Objects
 	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
-	import nape.phys.Material;
 	import nape.shape.Polygon;
 	import nape.space.Space;
 	
@@ -20,8 +16,7 @@ package Objects
 	
 	public class Platform extends Sprite
 	{
-		[Embed(source="../Assets/mountain.png")]
-		private var test:Class;	
+		
 	
 		public var body:Body;
 		public var options:Object;
