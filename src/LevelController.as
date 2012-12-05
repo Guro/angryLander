@@ -12,7 +12,7 @@ package
 	import Objects.Platform;
 	import Objects.Player;
 	
-	import assets.levels.level1Data;
+	import assets.levels.*;
 	
 	import nape.geom.Vec2;
 	import nape.phys.Body;
@@ -33,7 +33,11 @@ package
 		public static const level1Decor:Class;
 		
 		
-		
+		[Embed(source="assets/levels/level2.oel", mimeType="application/octet-stream")]
+		public static const level2:Class;
+		private var level2DataClass:level2Data;
+		[Embed(source="assets/levels/level2Decor.png")]
+		public static const level2Decor:Class;
 		
 		
 		
@@ -77,7 +81,7 @@ package
 			
 			// Create Decor
 			decorImage = Image.fromBitmap(new LevelController["level"+this.levelNumber+"Decor"]());
-			this.main.stageCont.addChild(decorImage);
+			addChild(decorImage);
 			
 			this.createPlayer();
 			this.createCoins();

@@ -99,7 +99,7 @@ package Objects
 		
 		public function consumeHP(consume:Number):void
 		{
-			
+			return;
 			hp = hp - consume;
 			main.controls.hpGauge.ratio = hp/100;	
 			trace("Consume HP:"+hp);

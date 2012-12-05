@@ -103,16 +103,16 @@ package
 		{
 			// TODO This Code is for just debugging
 			var k:Boolean = false;
-			if(e.keyCode == 38){
+			if(e.keyCode == 38 || e.keyCode == 87){
 				main.playerAction = main.player.moveUp;
 				k = true;
 			}
-			if(e.keyCode == 37){
+			if(e.keyCode == 37  || e.keyCode == 65){
 				main.playerAction = main.player.moveLeft;
 				k = true;
 			}
 			
-			if(e.keyCode == 39){
+			if(e.keyCode == 39  || e.keyCode == 68){
 				main.playerAction = main.player.moveRight;
 				k = true;
 			}

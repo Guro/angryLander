@@ -30,7 +30,8 @@ package
 		private var mouseY:Number;
 		private var debugSpace:ShapeDebug;
 		private var debug:ShapeDebug;
-		
+		private var curLevel:int = 1;
+		private var maxLevels:int = 2;
 		
 		public var controls:Controls;
 		public var enableDebugDraw:Boolean = false;
@@ -39,6 +40,7 @@ package
 		public var player:Player;
 		public var stageCont:Sprite;
 		public var camera:StarlingCameraFocus;
+		
 		
 		// Physics Listeners
 		public var collision:CbType = new CbType();
@@ -90,7 +92,7 @@ package
 			// Camera
 			Starling.current.stage.addChild(stageCont);
 			camera = new StarlingCameraFocus( Starling.current.stage, stageCont,
-				player.container, [ {name:'bg',instance:bgImg,ratio:0.1}
+				player.container, [ {name:'bg',instance:bgImg,ratio:0.01}
 				], true );
 			//camera.setFocusPosition(0,0);
 			
@@ -100,8 +102,8 @@ package
 			
 			//Sounds.playSound("loopSound",9999);
 			//camera.zoomFocus(0.7);
-			camera.setBoundary(lv.decorImage);
 			
+			camera.setBoundary(lv.decorImage);
 			
 			
 			
@@ -131,18 +133,23 @@ package
 				space.worldLinearDrag = 1;
 				space.worldAngularDrag = 1;
 				this.initPyListeners();
+				this.curLevel++;
+				if(this.curLevel > this.maxLevels)
+					this.curLevel = 1;
 			}
 			
 			
 			//Create Level
 			lv = new LevelController(this);
-			lv.loadLevel(1);
+			lv.loadLevel(curLevel);
 			stageCont.addChild(lv);
 			
 			
 			
-			if(camera)
+			if(camera){
 				camera.focusTarget = player.container;
+				camera.setBoundary(lv.decorImage);
+			}
 		}
 		
 		
