@@ -9,6 +9,7 @@ package
 	import flash.utils.getDefinitionByName;
 	
 	import Objects.Coin;
+	import Objects.Lightning;
 	import Objects.Platform;
 	import Objects.Player;
 	
@@ -84,17 +85,16 @@ package
 			
 			
 			
-			var mc:MovieClip = new MovieClip(Assets.getAtlas2().getTextures("light_"),30);
-			addChild(mc);
-			mc.x = 650;
-			mc.y = 500;
-			mc.rotation = 90;
-			Starling.juggler.add(mc);
 			
+			
+			
+			this.createLights();
 			
 			// Create Decor
 			decorImage = Image.fromBitmap(new LevelController["level"+this.levelNumber+"Decor"]());
 			addChild(decorImage);
+			
+			
 			
 			this.createPlayer();
 			this.createCoins();
@@ -156,6 +156,16 @@ package
 		}
 		
 		
+		// Create Lights
+		private function createLights():void
+		{
+			var light:Lightning = new Lightning(main,{
+				x:400,
+				y:220
+			});
+			addChild(light);
+		}
+		
 		// Create Coins
 		private function createCoins():void
 		{
@@ -172,6 +182,9 @@ package
 			addChild(coins);
 			main.addEventListener("coinCollected",coinCollected);
 		}
+		
+		
+		
 		
 		private function coinCollected():void
 		{
@@ -215,9 +228,11 @@ package
 			this.finished = true;
 			main.space.listeners.remove(main.itListenerSensor);
 			TweenLite.to(main.player,1,{alpha:0,delay:1.5});
-			TweenLite.to(platform.body.graphic,1,{alpha:0,delay:1.5});
+			TweenLite.to(platform.body.graphic,1,{alpha:0,delay:1.5,onComplete:function(){
+				main.createLevel();
+			}});
 			
-			main.createLevel();
+			
 			
 		}
 		

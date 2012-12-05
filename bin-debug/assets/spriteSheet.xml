@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:cd44fea335b6659e4d85c2811f0ee843$ -->
+<TextureAtlas imagePath="spriteSheet.png">
+    <SubTexture name="boom" x="2" y="157" width="340" height="265"/>
+    <SubTexture name="btLeft" x="64" y="2" width="60" height="60"/>
+    <SubTexture name="btRight" x="2" y="2" width="60" height="60"/>
+    <SubTexture name="btUp" x="126" y="2" width="60" height="60"/>
+    <SubTexture name="coin" x="188" y="2" width="64" height="64"/>
+    <SubTexture name="fuelBar" x="2" y="125" width="300" height="30"/>
+    <SubTexture name="fuelBorder" x="2" y="93" width="300" height="30"/>
+    <SubTexture name="pl" x="254" y="2" width="97" height="89"/>
+    <SubTexture name="platform" x="353" y="2" width="142" height="52"/>
+</TextureAtlas>

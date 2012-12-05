@@ -30,7 +30,7 @@ package
 		private var mouseY:Number;
 		private var debugSpace:ShapeDebug;
 		private var debug:ShapeDebug;
-		private var curLevel:int = 2;
+		private var curLevel:int = 1;
 		private var maxLevels:int = 2;
 		
 		public var controls:Controls;
@@ -65,6 +65,7 @@ package
 			//correct bg pos
 			bgImg.x = -400;
 			bgImg.y = -200;
+			bgImg.touchable = false;
 			addChild(bgImg);
 			
 			

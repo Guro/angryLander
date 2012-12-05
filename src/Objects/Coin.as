@@ -5,6 +5,8 @@ package Objects
 	
 	import flash.geom.Rectangle;
 	
+	import nape.geom.Vec2;
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -54,6 +56,7 @@ package Objects
 									onComplete:function():void
 									{	
 										t.visible = false;
+										t.removeFromParent(true);
 									}
 								});
 				this.dispose();
