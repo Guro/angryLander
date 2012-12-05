@@ -30,7 +30,7 @@ package
 		private var mouseY:Number;
 		private var debugSpace:ShapeDebug;
 		private var debug:ShapeDebug;
-		private var curLevel:int = 1;
+		private var curLevel:int = 2;
 		private var maxLevels:int = 2;
 		
 		public var controls:Controls;
@@ -63,8 +63,8 @@ package
 			
 			var bgImg:Image = Image.fromBitmap(new bg());
 			//correct bg pos
-			bgImg.x = -bgImg.width/2;
-			bgImg.y = 0;
+			bgImg.x = -400;
+			bgImg.y = -200;
 			addChild(bgImg);
 			
 			
@@ -92,7 +92,7 @@ package
 			// Camera
 			Starling.current.stage.addChild(stageCont);
 			camera = new StarlingCameraFocus( Starling.current.stage, stageCont,
-				player.container, [ {name:'bg',instance:bgImg,ratio:0.01}
+				player.container, [ {name:'bg',instance:bgImg,ratio:0.1}
 				], true );
 			//camera.setFocusPosition(0,0);
 			
@@ -100,7 +100,7 @@ package
 			
 			
 			
-			//Sounds.playSound("loopSound",9999);
+			Sounds.playSound("loopSound",9999);
 			//camera.zoomFocus(0.7);
 			
 			camera.setBoundary(lv.decorImage);

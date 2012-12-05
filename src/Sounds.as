@@ -22,7 +22,7 @@ package
 		private static const popSound:Class;
 		
 		
-		private static var enabled:Boolean = false;
+		private static var enabled:Boolean = true;
 		
 		
 		public static function playSound(name:String,loop:Number=0):void

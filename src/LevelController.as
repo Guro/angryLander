@@ -246,7 +246,7 @@ package
 			if(!boomImage)
 			{
 				boomImage = new Sprite();
-				addChild(boomImage);
+				main.addChild(boomImage);
 				boomImage.addChild(new Image(Assets.getAtlas().getTexture("boom")));
 				boomImage.x = main.stage.stageWidth/2;
 				boomImage.y = main.stage.stageHeight/2;

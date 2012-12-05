@@ -83,8 +83,8 @@ package Objects
 			addChild(this.body.graphic);
 			
 			// Reset Fuel and HP Gauge
-//			main.controls.hpGauge.ratio = 1;
-//main.controls.gauge.ratio 	= 1;
+			//main.controls.hpGauge.ratio = 1;
+			//main.controls.gauge.ratio 	= 1;
 		}
 		
 		private function updateGraphics(b:Body):void
