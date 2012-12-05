@@ -12,14 +12,17 @@ package
 	import Objects.Platform;
 	import Objects.Player;
 	
-	import assets.levels.*;
+	import assets.levels.level1Data;
+	import assets.levels.level2Data;
 	
 	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
 	import nape.shape.Circle;
 	
+	import starling.core.Starling;
 	import starling.display.Image;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
@@ -78,6 +81,16 @@ package
 			var contentfile:ByteArray = new LevelController["level"+this.levelNumber]();
 			var contentstr:String = contentfile.readUTFBytes( contentfile.length );
 			_xml =  new XML(contentstr);
+			
+			
+			
+			var mc:MovieClip = new MovieClip(Assets.getAtlas2().getTextures("light_"),30);
+			addChild(mc);
+			mc.x = 650;
+			mc.y = 500;
+			mc.rotation = 90;
+			Starling.juggler.add(mc);
+			
 			
 			// Create Decor
 			decorImage = Image.fromBitmap(new LevelController["level"+this.levelNumber+"Decor"]());
