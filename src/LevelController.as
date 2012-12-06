@@ -26,6 +26,7 @@ package
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import nape.shape.Polygon;
 	
 	public class LevelController extends Sprite
 	{
@@ -101,11 +102,11 @@ package
 			this.createMounts();
 			
 			
-			// Create Floor
-			//var floor:Body = new Body(BodyType.STATIC);
-			//floor.shapes.add(new Polygon(Polygon.rect(-100,760,1200,200))); 	//bottom
-			//floor.space = main.space;
-			//floor.cbTypes.add(main.collision);
+			// Create Borders
+			var borders:Body = new Body(BodyType.STATIC);
+			borders.shapes.add(new Polygon(Polygon.rect(-30,-10,20,800))); 		//left
+			borders.space = main.space;
+			
 			
 			
 			
@@ -159,11 +160,14 @@ package
 		// Create Lights
 		private function createLights():void
 		{
-			var light:Lightning = new Lightning(main,{
-				x:400,
-				y:220
-			});
-			addChild(light);
+			for each(var c:Object in _xml.Objects.lightning)
+			{
+				var light:Lightning = new Lightning(main,{
+					x:c.@x,
+					y:c.@y
+				});
+				addChild(light);
+			}
 		}
 		
 		// Create Coins
@@ -247,7 +251,7 @@ package
 				this.goodLanding = false;
 				this.boomImage.visible = true;
 				var t:Object = this;
-				Sounds.playSound("boomSound");
+				//Sounds.playSound("boomSound");
 				main.camera.shake(0.07,30);
 				//main.player.consumeFuel(30);
 				TweenLite.to(this.boomImage,0.7,{

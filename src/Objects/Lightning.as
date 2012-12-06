@@ -4,6 +4,7 @@ package Objects
 	import com.greensock.easing.Sine;
 	
 	import flash.geom.Rectangle;
+	import flash.utils.setInterval;
 	
 	import nape.geom.Vec2;
 	
@@ -34,18 +35,33 @@ package Objects
 			lightMC.pivotY = lightMC.width/2;
 			lightMC.x = opts.x;
 			lightMC.y = opts.y;
+			lightMC.visible = false;
 			
-			Starling.juggler.add(lightMC);
+			setInterval(toggle,3000);
 			
-			addEventListener(Event.ENTER_FRAME, loop)
-
 			addChild(lightMC);
 		}
 		
+		public function toggle():void
+		{
+		
+			if(lightMC.visible == false)
+			{
+				lightMC.visible = true;
+				Starling.juggler.add(lightMC);
+				addEventListener(Event.ENTER_FRAME, loop)
+			}else{
+				lightMC.visible = false;
+				Starling.juggler.remove(lightMC);
+				this.dispose();
+			}
+		}
+		
+		
+		
 		private function loop(e:Event):void
 		{
-			// TODO Auto Generated method stub
-			if(main.player.container.bounds.intersects(new Rectangle(lightMC.x,lightMC.y,lightMC.width,lightMC.height)))
+			if(main.player.container.bounds.intersects(new Rectangle(lightMC.x-20,lightMC.y,lightMC.width/2,lightMC.height)))
 			{
 				main.player.body.applyLocalImpulse(new Vec2(-1400,0), new Vec2(0,0));
 				main.camera.shake(0.03,30);

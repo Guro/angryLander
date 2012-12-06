@@ -9,5 +9,7 @@
     <coin id="5" x="1799" y="300" />
     <mount id="tmp" x="1080" y="120" />
     <mount id="tmp2" x="905" y="615" />
+    <lightning x="200" y="170" />
+    <lightning x="600" y="170" />
   </Objects>
 </level>

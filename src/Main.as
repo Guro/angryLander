@@ -101,7 +101,7 @@ package
 			
 			
 			
-			Sounds.playSound("loopSound",9999);
+			//Sounds.playSound("loopSound",9999);
 			//camera.zoomFocus(0.7);
 			
 			camera.setBoundary(lv.decorImage);
