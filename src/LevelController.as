@@ -20,13 +20,16 @@ package
 	import nape.phys.Body;
 	import nape.phys.BodyType;
 	import nape.shape.Circle;
+	import nape.shape.Polygon;
 	
 	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import nape.shape.Polygon;
+	import starling.filters.IdentityFilter;
+	import starling.filters.InverseFilter;
+	import starling.filters.SpotlightFilter;
 	
 	public class LevelController extends Sprite
 	{
@@ -207,6 +210,7 @@ package
 			});
 			main.player = player;
 			addChild(player);
+			
 		}
 		
 		// Create Finish Platform

@@ -19,6 +19,7 @@ package
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.filters.SpotlightFilter;
 	
 	public class Main extends Sprite
 	{
@@ -48,6 +49,7 @@ package
 		public var itListener:InteractionListener;
 		public var itListenerSensor:InteractionListener;
 		private var lv:LevelController;
+		private var sF:SpotlightFilter;
 		
 		public function Main()
 		{
@@ -99,7 +101,12 @@ package
 			
 			this.createControls();
 			
+			sF = new SpotlightFilter(0,0,1,3,0.6);
+			//stageCont.filter = sF;
+			//bgImg.filter = sF;
+//			
 			
+
 			
 			//Sounds.playSound("loopSound",9999);
 			//camera.zoomFocus(0.7);
@@ -171,6 +178,9 @@ package
 				controls.disableControls();
 				controls.dispose();
 			}
+			
+			sF.centerX = player.body.graphic.x;
+			sF.centerY = player.body.graphic.y;
 			
 			
 			camera.update();
