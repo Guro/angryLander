@@ -124,7 +124,7 @@ package Objects
 		public function moveLeft():void
 		{
 			//this.body.applyLocalForce(new Vec2(-1000,-1600),new Vec2(0,0));
-			this.body.applyLocalImpulse(new Vec2(-30,-30), new Vec2(0,0));
+			this.body.applyLocalImpulse(new Vec2(-30,-15), new Vec2(0,0));
 			
 			
 			
@@ -138,7 +138,7 @@ package Objects
 		public function moveRight():void
 		{
 			//this.body.applyLocalForce(new Vec2(1000,-1600),new Vec2(0,0));
-			this.body.applyLocalImpulse(new Vec2(30,-30), new Vec2(0,0));
+			this.body.applyLocalImpulse(new Vec2(30,-15), new Vec2(0,0));
 			
 			
 			this.startParticles();

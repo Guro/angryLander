@@ -61,8 +61,8 @@ package
 			
 			// Controls Container
 			container 	= new Sprite;
-			container.x = 900;
-			container.y = 630;
+			container.x = 870;
+			container.y = 600;
 			
 			addChild(container);
 			
@@ -70,15 +70,22 @@ package
 			
 			
 			upButton = new Button(Assets.getAtlas().getTexture("btUp"));
+			upButton.scaleX 	= 1.5;
+			upButton.scaleY 	= 1.5;
 			upButton.x		 	= -850;
 			upButton.y		 	= 60;
 			container.addChild(upButton);
 			
 			leftButton = new Button(Assets.getAtlas().getTexture("btLeft"));
-			leftButton.y		 = 60;
+			leftButton.scaleX 		= 1.5;
+			leftButton.scaleY	 	= 1.5;
+			leftButton.y		 	= 60;
+			leftButton.x			= -50;
 			container.addChild(leftButton);
 			
 			rightButton = new Button(Assets.getAtlas().getTexture("btRight"));
+			rightButton.scaleX	 = 1.5;
+			rightButton.scaleY	 = 1.5;
 			rightButton.y		 = 60;
 			rightButton.x		 = 60;
 			container.addChild(rightButton);
@@ -104,7 +111,7 @@ package
 			// TODO This Code is for just debugging
 			var k:Boolean = false;
 			if(e.keyCode == 38 || e.keyCode == 87){
-				main.playerAction = main.player.moveUp;
+				main.playerAction2 = main.player.moveUp;
 				k = true;
 			}
 			if(e.keyCode == 37  || e.keyCode == 65){
@@ -139,7 +146,7 @@ package
 			if(e.getTouch(target, TouchPhase.BEGAN))
 			{
 				if(e.currentTarget == upButton)
-					main.playerAction = main.player.moveUp;
+					main.playerAction2 = main.player.moveUp;
 				
 				if(e.currentTarget == leftButton)
 					main.playerAction = main.player.moveLeft;
@@ -160,6 +167,8 @@ package
 		private function stopMove():void
 		{	
 			main.mouseDown 	= false;
+			main.playerAction = null;
+			main.playerAction2 = null;
 			main.player.stopParticles();
 		}
 	}

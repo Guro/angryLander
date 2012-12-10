@@ -75,7 +75,7 @@ package
 			main.addEventListener("pyFinishTouch",finishTouched);
 			main.addEventListener("pyCrashCollision",crashCollision);
 			
-			this.initBoom();
+			
 		}
 		
 		
@@ -253,47 +253,19 @@ package
 				trace("crash");
 				player.consumeHP(34);
 				this.goodLanding = false;
-				this.boomImage.visible = true;
-				var t:Object = this;
+
+
 				//Sounds.playSound("boomSound");
 				main.camera.shake(0.07,30);
 				//main.player.consumeFuel(30);
-				TweenLite.to(this.boomImage,0.7,{
-					alpha:1,
-					scaleX:1.5,
-					scaleY:1.5,
-					ease:Bounce.easeOut,
-					onComplete:function():void
-					{	
-						trace("add Listener");
-						main.space.listeners.add(main.itListener);
-						t.initBoom();
-					}
-				});
-				trace("remove listener");
-				main.space.listeners.remove(main.itListener);
+				
+				//trace("remove listener");
+				//main.space.listeners.remove(main.itListener);
 			}
 			
 		}
 		
 		
-		private function initBoom():void
-		{
-			if(!boomImage)
-			{
-				boomImage = new Sprite();
-				main.addChild(boomImage);
-				boomImage.addChild(new Image(Assets.getAtlas().getTexture("boom")));
-				boomImage.x = main.stage.stageWidth/2;
-				boomImage.y = main.stage.stageHeight/2;
-				boomImage.pivotX = boomImage.width 	>> 1;
-				boomImage.pivotY = boomImage.height >> 1;
-			}
-			boomImage.visible = 0;
-			boomImage.alpha = 0;
-			boomImage.scaleX = 4;
-			boomImage.scaleY = 4;
-		}
 		
 	}
 }

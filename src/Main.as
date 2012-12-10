@@ -38,6 +38,7 @@ package
 		public var enableDebugDraw:Boolean = false;
 		public var mouseDown:Boolean;
 		public var playerAction:Function;
+		public var playerAction2:Function;
 		public var player:Player;
 		public var stageCont:Sprite;
 		public var camera:StarlingCameraFocus;
@@ -101,7 +102,7 @@ package
 			
 			this.createControls();
 			
-			sF = new SpotlightFilter(0,0,1,3,0.6);
+			//sF = new SpotlightFilter(0,0,1,3,0.6);
 			//stageCont.filter = sF;
 			//bgImg.filter = sF;
 //			
@@ -167,7 +168,11 @@ package
 			if(mouseDown)
 			{
 				// This function is called from child classes
-				playerAction();
+				if(this.playerAction)
+					playerAction();
+				
+				if(this.playerAction2)
+					playerAction2();
 			}
 			if(player.fuel <= 0){
 				controls.disableControls();
@@ -179,8 +184,8 @@ package
 				controls.dispose();
 			}
 			
-			sF.centerX = player.body.graphic.x;
-			sF.centerY = player.body.graphic.y;
+//			sF.centerX = player.body.graphic.x;
+//			sF.centerY = player.body.graphic.y;
 			
 			
 			camera.update();
