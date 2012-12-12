@@ -70,6 +70,7 @@ package
 			
 			
 			upButton = new Button(Assets.getAtlas().getTexture("btUp"));
+			upButton.name = "up";
 			upButton.scaleX 	= 1.5;
 			upButton.scaleY 	= 1.5;
 			upButton.x		 	= -850;
@@ -77,6 +78,7 @@ package
 			container.addChild(upButton);
 			
 			leftButton = new Button(Assets.getAtlas().getTexture("btLeft"));
+			leftButton.name = "left";
 			leftButton.scaleX 		= 1.5;
 			leftButton.scaleY	 	= 1.5;
 			leftButton.y		 	= 60;
@@ -84,6 +86,7 @@ package
 			container.addChild(leftButton);
 			
 			rightButton = new Button(Assets.getAtlas().getTexture("btRight"));
+			rightButton.name = "right";
 			rightButton.scaleX	 = 1.5;
 			rightButton.scaleY	 = 1.5;
 			rightButton.y		 = 60;
@@ -98,10 +101,19 @@ package
 			main.stage.addEventListener(KeyboardEvent.KEY_UP,keyUpEvent);
 		}
 		
-		private function keyUpEvent():void
+		private function keyUpEvent(e:KeyboardEvent):void
 		{
-			// TODO Auto Generated method stub
-			this.stopMove();
+			trace(e.keyCode);
+			if(e.keyCode == 38 || e.keyCode == 87){
+				this.stopMove("up");
+			}
+			if(e.keyCode == 37  || e.keyCode == 65){
+				this.stopMove("leftRight");
+			}
+			
+			if(e.keyCode == 39  || e.keyCode == 68){
+				this.stopMove("leftRight");
+			}
 			debugKey = false;
 		}
 		
@@ -160,16 +172,31 @@ package
 			
 			if(e.getTouch(target, TouchPhase.ENDED))
 			{	
-				this.stopMove();
+				if(target.name == "up");
+					this.stopMove("up");
+					
+				if(target.name == "left" || target.name == "right");
+					this.stopMove("leftRight");
 			}
 		}
 		
-		private function stopMove():void
+		private function stopMove(mode:String="both"):void
 		{	
 			main.mouseDown 	= false;
-			main.playerAction = null;
-			main.playerAction2 = null;
 			main.player.stopParticles();
+			
+			switch (mode){
+				case "both":
+					main.playerAction  = null;
+					main.playerAction2 = null;
+					break;
+				case "up":
+					main.playerAction2 = null;
+					break;
+				case "leftRight":
+					main.playerAction  = null;
+					break;	
+			}
 		}
 	}
 }
