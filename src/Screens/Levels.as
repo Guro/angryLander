@@ -2,6 +2,7 @@ package Screens
 {
 	import Controllers.AssetsController;
 	
+	
 	import starling.display.Button;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -71,6 +72,8 @@ package Screens
 					upButton.x		 	= i*170;
 				}
 				allButtons.addChild(upButton);
+				
+				
 			}
 			allButtons.addEventListener(TouchEvent.TOUCH,onTouch);
 		}

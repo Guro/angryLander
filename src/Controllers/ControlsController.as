@@ -138,7 +138,6 @@ package Controllers
 			}
 			if(k && !debugKey){
 				SoundsController.playSound("shhSound");
-				main.mouseDown = true;
 				debugKey = true;
 			}
 			
@@ -168,22 +167,22 @@ package Controllers
 					main.playerAction = main.player.moveRight;	
 				
 				SoundsController.playSound("shhSound");
-				main.mouseDown = true;
+
 			}
 			
 			if(e.getTouch(target, TouchPhase.ENDED))
 			{	
-				if(target.name == "up");
+				if(e.currentTarget == upButton)
 					this.stopMove("up");
 					
-				if(target.name == "left" || target.name == "right");
+				if(e.currentTarget == leftButton || e.currentTarget == rightButton)
 					this.stopMove("leftRight");
 			}
 		}
 		
 		private function stopMove(mode:String="both"):void
 		{	
-			main.mouseDown 	= false;
+			
 			main.player.stopParticles();
 			
 			switch (mode){

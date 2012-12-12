@@ -3,6 +3,11 @@ package Objects
 	
 	import com.greensock.TweenLite;
 	
+	import Controllers.AssetsController;
+	import Controllers.SoundsController;
+	
+	import Screens.Game;
+	
 	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
@@ -14,9 +19,6 @@ package Objects
 	import starling.display.Sprite;
 	import starling.extensions.PDParticleSystem;
 	import starling.textures.Texture;
-	import Screens.Game;
-	import Controllers.AssetsController;
-	import Controllers.SoundsController;
 	
 	
 	
@@ -122,6 +124,8 @@ package Objects
 			this.startParticles();
 			TweenLite.to(this.body,1,{rotation:0});
 			consumeFuel(fuelConsumption);
+			
+			
 		}
 		
 		public function moveLeft():void

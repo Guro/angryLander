@@ -23,8 +23,8 @@ package Controllers
 		[Embed(source="/assets/lightSheet.xml", mimeType="application/octet-stream")]
 		public static const AtlasXmlLight:Class;
 		
-		[Embed(source="/assets/TOONISH.ttf", fontFamily="Toonish", embedAsCFF="false")]
-		public static var fontToonish:Class;
+//		[Embed(source="/assets/TOONISH.ttf", fontFamily="Toonish", embedAsCFF="false")]
+//		public static var fontToonish:Class;
 		
 		
 		public static function getAtlas():TextureAtlas

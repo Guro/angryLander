@@ -39,7 +39,6 @@ package Screens
 		
 		public var controls:ControlsController;
 		public var enableDebugDraw:Boolean = false;
-		public var mouseDown:Boolean;
 		public var playerAction:Function;
 		public var playerAction2:Function;
 		public var player:Player;
@@ -80,11 +79,6 @@ package Screens
 			
 			addChild(bgImg);
 			
-			
-			
-			
-			
-			
 			// Space
 			space 		= new Space(new Vec2(0,300));
 			space.worldLinearDrag = 1;
@@ -122,10 +116,7 @@ package Screens
 			//camera.zoomFocus(0.7);
 			
 			camera.setBoundary(lv.decorImage);
-			
-						
-			
-			
+
 		}
 		
 		// Create Controls
@@ -183,15 +174,14 @@ package Screens
 		// Main Loop
 		private function loop(e:Event):void
 		{			
-			if(mouseDown)
-			{
-				// This function is called from child classes
-				if(this.playerAction)
-					playerAction();
-				
-				if(this.playerAction2)
-					playerAction2();
-			}
+
+			// This function is called from child classes
+			if(this.playerAction)
+				playerAction();
+			
+			if(this.playerAction2)
+				playerAction2();
+			
 			if(player.fuel <= 0){
 				controls.disableControls();
 				controls.dispose();
