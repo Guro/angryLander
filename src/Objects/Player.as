@@ -14,6 +14,9 @@ package Objects
 	import starling.display.Sprite;
 	import starling.extensions.PDParticleSystem;
 	import starling.textures.Texture;
+	import Screens.Game;
+	import Controllers.AssetsController;
+	import Controllers.SoundsController;
 	
 	
 	
@@ -35,9 +38,9 @@ package Objects
 		public var fuelConsumption:Number = 0.05;
 		
 		public var container:Sprite;
-		private var main:Main;
+		private var main:Game;
 		
-		public function Player(mn:Main,opts:Object)
+		public function Player(mn:Game,opts:Object)
 		{
 			options = opts;
 			main	= mn;
@@ -54,7 +57,7 @@ package Objects
 			addChild(mParticleSystem);
 			mParticleSystem.alpha = 0.5;
 			
-			var playerImage:Image = new Image(Assets.getAtlas().getTexture("pl"));
+			var playerImage:Image = new Image(AssetsController.getAtlas().getTexture("pl"));
 			container.addChild(playerImage);
 			
 		
@@ -170,7 +173,7 @@ package Objects
 					mParticleSystem.stop();
 					trace("Completed");
 				}});
-			Sounds.stopSound("shhSound");
+			SoundsController.stopSound("shhSound");
 		}
 	}
 }

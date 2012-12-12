@@ -10,24 +10,27 @@ package Objects
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import Screens.Game;
+	import Controllers.AssetsController;
+	import Controllers.SoundsController;
 	
 	public class Coin extends Sprite
 	{
 		
 		private var container:Sprite;
-		private var main:Main;
+		private var main:Game;
 		
 		
 		public var options:Object;
 		public var coinImage:Image
 		
-		public function Coin(mn:Main,opts:Object)
+		public function Coin(mn:Game,opts:Object)
 		{
 			main 	= mn;
 			options	= opts;
 			
 			
-			coinImage = new Image(Assets.getAtlas().getTexture("coin"));
+			coinImage = new Image(AssetsController.getAtlas().getTexture("coin"));
 			coinImage.pivotX = coinImage.width/2;
 			coinImage.pivotY = coinImage.width/2;
 			coinImage.x = opts.x;
@@ -60,7 +63,7 @@ package Objects
 									}
 								});
 				this.dispose();
-				Sounds.playSound("popSound");
+				SoundsController.playSound("popSound");
 				main.dispatchEvent(new Event("coinCollected"));
 			}
 		}

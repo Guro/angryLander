@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data version="1.0">
     <struct type="Settings">
+        <key>fileFormatVersion</key>
+        <int>1</int>
         <key>variation</key>
         <string>main</string>
         <key>verbose</key>
@@ -17,8 +19,6 @@
         <false/>
         <key>dpi</key>
         <uint>72</uint>
-        <key>allowFreeSize</key>
-        <false/>
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
@@ -73,6 +73,12 @@
             <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
+            <key>sizeConstraints</key>
+            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
+            <key>forceSquared</key>
+            <false/>
+            <key>forceWordAligned</key>
+            <false/>
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
@@ -122,23 +128,20 @@
             <double>1</double>
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
-            <key>crop</key>
-            <false/>
             <key>innerPadding</key>
             <uint>0</uint>
             <key>extrude</key>
             <uint>0</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
-            <key>trim</key>
-            <false/>
+            <key>trimMode</key>
+            <enum type="SpriteSettings::TrimMode">None</enum>
             <key>heuristicMask</key>
             <false/>
         </struct>
         <key>fileList</key>
         <array>
             <filename>platform.png</filename>
-            <filename>boom.png</filename>
             <filename>pl.png</filename>
             <filename>btRight.png</filename>
             <filename>btLeft.png</filename>
@@ -146,6 +149,8 @@
             <filename>coin.png</filename>
             <filename>fuelBar.png</filename>
             <filename>fuelBorder.png</filename>
+            <filename>levelButton.png</filename>
+            <filename>levelButtonLock.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

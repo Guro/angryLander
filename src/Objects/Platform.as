@@ -12,6 +12,8 @@ package Objects
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
+	import Screens.Game;
+	import Controllers.AssetsController;
 	
 	
 	public class Platform extends Sprite
@@ -25,7 +27,7 @@ package Objects
 		private var collision:CbType = new CbType();
 		private var sensor:CbType = new CbType();
 		private var container:Sprite;
-		private var main:Main;
+		private var main:Game;
 		private var space:Space;
 		private var itListener:InteractionListener;
 		private var itListenerSensor:InteractionListener;
@@ -34,7 +36,7 @@ package Objects
 		
 		private var goodLanding:Boolean = false;
 		
-		public function Platform(sp:Space,st,mn:Main,opts:Object)
+		public function Platform(sp:Space,st,mn:Game,opts:Object)
 		{
 			this.main = mn;
 			this.space = sp;
@@ -46,7 +48,7 @@ package Objects
 			
 		
 			
-			var playerImage:Image = new Image(Assets.getAtlas().getTexture("platform"));
+			var playerImage:Image = new Image(AssetsController.getAtlas().getTexture("platform"));
 			container.addChild(playerImage);
 			
 			

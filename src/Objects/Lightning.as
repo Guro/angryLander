@@ -12,25 +12,27 @@ package Objects
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import Screens.Game;
+	import Controllers.AssetsController;
 	
 	public class Lightning extends Sprite
 	{
 		
 		private var container:Sprite;
-		private var main:Main;
+		private var main:Game;
 		
 		
 		public var options:Object;
 		public var lightMC:MovieClip
 		
-		public function Lightning(mn:Main,opts:Object)
+		public function Lightning(mn:Game,opts:Object)
 		{
 			main 	= mn;
 			options	= opts;
 			
 			
 			
-			lightMC = new  MovieClip(Assets.getAtlas2().getTextures("light_"),30);
+			lightMC = new  MovieClip(AssetsController.getAtlas2().getTextures("light_"),30);
 			lightMC.pivotX = lightMC.width/2;
 			lightMC.pivotY = lightMC.width/2;
 			lightMC.x = opts.x;

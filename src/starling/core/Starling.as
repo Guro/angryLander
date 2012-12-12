@@ -161,7 +161,7 @@ package starling.core
         private var mLastFrameTimestamp:Number;
         private var mViewPort:Rectangle;
         private var mLeftMouseDown:Boolean;
-        private var mStatsDisplay:StatsDisplay;
+        public var mStatsDisplay:StatsDisplay;
         private var mShareContext:Boolean;
         
         private var mNativeStage:flash.display.Stage;

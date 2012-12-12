@@ -15,7 +15,7 @@
 
 	<!-- A universally unique application identifier. Must be unique across all AIR applications.
 	Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-	<id>com.itdc.angrylander</id>
+	<id>angryLander.debug</id>
 
 	<!-- Used as the filename for the application. Required. -->
 	<filename>AngryLander</filename>
@@ -109,7 +109,7 @@
 		<!-- Whether or not to pan when a soft keyboard is raised or lowered (either "pan" or "none").  Optional.  Defaults "pan." -->
 		<!-- <softKeyboardBehavior></softKeyboardBehavior> -->
 
-	<autoOrients>false</autoOrients>
+	<autoOrients>true</autoOrients>
         <fullScreen>true</fullScreen>
         <visible>true</visible>
     </initialWindow>

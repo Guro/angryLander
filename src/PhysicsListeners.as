@@ -7,6 +7,7 @@ package
 	import nape.callbacks.InteractionType;
 	
 	import starling.events.Event;
+	import Screens.Game;
 
 	public class PhysicsListeners
 	{
@@ -18,9 +19,9 @@ package
 		public var itListenerSensor:InteractionListener;
 		
 		
-		public var main:Main;
+		public var main:Game;
 		
-		public function PhysicsListeners(mn:Main)
+		public function PhysicsListeners(mn:Game)
 		{
 			
 			this.main = mn;
