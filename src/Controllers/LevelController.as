@@ -218,7 +218,7 @@ package Controllers
 			this.finished = true;
 			main.space.listeners.remove(main.itListenerSensor);
 			TweenLite.to(main.player,1,{alpha:0,delay:1.5});
-			TweenLite.to(platform.body.graphic,1,{alpha:0,delay:1.5,onComplete:function(){
+			TweenLite.to(platform.body.graphic,1,{alpha:0,delay:1.5,onComplete:function():void{
 				main.finishLevel();
 			}});
 			

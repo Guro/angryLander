@@ -32,7 +32,7 @@ package Objects
 			
 			
 			
-			lightMC = new  MovieClip(AssetsController.getAtlas2().getTextures("light_"),30);
+			lightMC = new  MovieClip(AssetsController.getAtlas2().getTextures("light"),30);
 			lightMC.pivotX = lightMC.width/2;
 			lightMC.pivotY = lightMC.width/2;
 			lightMC.x = opts.x;

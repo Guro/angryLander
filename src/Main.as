@@ -1,5 +1,7 @@
 package
 {
+	import flash.system.System;
+	
 	import Controllers.AssetsController;
 	
 	import Objects.Lightning;
@@ -61,8 +63,7 @@ package
 			removeChild(this.curScreen);
 			this.curScreen.dispose();
 			this.curScreen = null;
-			
-			
+			System.gc();
 			
 			switch (screen){
 				case "Game":
@@ -72,10 +73,10 @@ package
 						this.curScreen = new Levels(this);
 				break;
 			}
-			var t = this;
-			Starling.juggler.delayCall(function(){
+			
+			Starling.juggler.delayCall(function():void{
 				trace("Delay Call");
-				addChild(t.curScreen);
+				addChild(curScreen);
 				Starling.current.stage.addChildAt(Starling.current.mStatsDisplay,Starling.current.stage.numChildren);
 			},0.5);
 		}
