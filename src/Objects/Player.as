@@ -24,14 +24,6 @@ package Objects
 	
 	public class Player extends Sprite
 	{
-		
-		
-		[Embed(source="../Assets/particles/particle.pex", mimeType="application/octet-stream")]
-		private static const windConfig:Class; 
-		
-		[Embed(source = "../Assets/particles/texture.png")]
-		private static const windParticle:Class; 
-		
 		public var body:Body;
 		public var mParticleSystem:PDParticleSystem;
 		public var options:Object;
@@ -52,8 +44,8 @@ package Objects
 			container = new Sprite();
 			
 			// Generate Particle
-			var drugsConfig:XML = XML(new windConfig());
-			var drugsTexture:Texture = Texture.fromBitmap(new windParticle());
+			var drugsConfig:XML = XML(AssetsController.getByteArray("windConfig"));
+			var drugsTexture:Texture = AssetsController.getTexture("windParticle");
 			
 			mParticleSystem = new PDParticleSystem(drugsConfig, drugsTexture);
 			addChild(mParticleSystem);

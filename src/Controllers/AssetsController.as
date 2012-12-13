@@ -1,7 +1,10 @@
 package Controllers
 {
 	import flash.display.Bitmap;
+	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
+	
+	import assets.levels.level1Data;
 	
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
@@ -10,6 +13,7 @@ package Controllers
 	{
 	
 		private static var gameTextures:Dictionary = new Dictionary();
+		private static var gameByteArrays:Dictionary = new Dictionary();
 		private static var gameTextureAtlas:TextureAtlas;
 		private static var gameTextureAtlasLight:TextureAtlas;
 		
@@ -25,6 +29,30 @@ package Controllers
 		
 //		[Embed(source="/assets/TOONISH.ttf", fontFamily="Toonish", embedAsCFF="false")]
 //		public static var fontToonish:Class;
+		
+		[Embed(source="/assets/bg.jpg")]
+		public static const bg:Class;
+		
+		[Embed(source="/assets/tmpStone.png")]
+		public static const tmp:Class;
+		
+		[Embed(source = "../Assets/particles/texture.png")]
+		private static const windParticle:Class; 
+		
+		
+		[Embed(source="../Assets/particles/particle.pex", mimeType="application/octet-stream")]
+		private static const windConfig:Class; 
+		
+		/* Levels */
+		[Embed(source="/assets/levels/level1.oel", mimeType="application/octet-stream")]
+		public static const level1:Class;
+		[Embed(source="/assets/levels/level1Decor.png")]
+		public static const level1Decor:Class;
+		
+		[Embed(source="/assets/levels/level2.oel", mimeType="application/octet-stream")]
+		public static const level2:Class;
+		[Embed(source="/assets/levels/level2Decor.png")]
+		public static const level2Decor:Class;
 		
 		
 		public static function getAtlas():TextureAtlas
@@ -57,6 +85,17 @@ package Controllers
 				gameTextures[name] = Texture.fromBitmap(bitmap);
 			}
 			return gameTextures[name];
+		}
+		
+		public static function getByteArray(name:String):String
+		{
+			if (gameByteArrays[name] == undefined)
+			{
+				var contentfile:ByteArray = new AssetsController[name]();
+				var contentstr:String = contentfile.readUTFBytes(contentfile.length);
+				gameByteArrays[name] = contentfile;
+			}
+			return gameByteArrays[name];
 		}
 	}
 }

@@ -7,7 +7,7 @@ package
 	
 	import starling.core.Starling;
 	
-	[SWF(frameRate=60, width=960, height=640, backgroundColor=0x000000)]
+	[SWF(frameRate=60, width=1024, height=768, backgroundColor=0x000000)]
 	public class FingerSoccer extends Sprite
 	{
 		public function FingerSoccer()
@@ -27,8 +27,8 @@ package
 			var star:Starling = new Starling(Main, stage, viewPort);
 			
 			
-			star.stage.stageWidth  = 960;
-			star.stage.stageHeight = 640;
+			star.stage.stageWidth  = 1024;
+			star.stage.stageHeight = 768;
 			star.showStats = true;
 			star.start();
 			

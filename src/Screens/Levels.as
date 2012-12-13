@@ -2,7 +2,6 @@ package Screens
 {
 	import Controllers.AssetsController;
 	
-	
 	import starling.display.Button;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -12,11 +11,11 @@ package Screens
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	
+	
 
 	public class Levels extends Sprite
 	{
-		[Embed(source="/Assets/bg.jpg")]
-		private var bg:Class;
+
 		
 		
 		public var main:Main;
@@ -36,7 +35,7 @@ package Screens
 		
 		private function onAdded(e:Event):void
 		{
-			var bgImg:Image = Image.fromBitmap(new bg());
+			var bgImg:Image = new Image(AssetsController.getTexture("bg"));
 			bgImg.touchable = false;
 			addChild(bgImg);
 			
@@ -86,11 +85,10 @@ package Screens
 			{
 				if(int(target.parent.parent.name) > this.main.maxLevels)
 					return;
-							
+				
 				this.main.changeScreen("Game",{
 					level:target.parent.parent.name
 				});
-				
 			}
 		}
 	}

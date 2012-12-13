@@ -1,5 +1,9 @@
 package Controllers
 {
+	import flash.text.ReturnKeyLabel;
+	
+	import Screens.Game;
+	
 	import starling.display.Button;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -8,7 +12,6 @@ package Controllers
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.extensions.Gauge;
-	import Screens.Game;
 	
 	public class ControlsController extends Sprite
 	{
@@ -68,6 +71,15 @@ package Controllers
 			addChild(container);
 			
 			
+			// Restart
+			restartButton = new Button(AssetsController.getAtlas().getTexture("btUp"));
+			restartButton.scaleX 	= 1.5;
+			restartButton.scaleY 	= 1.5;
+			restartButton.x		 	= -800;
+			restartButton.y		 	= -600;
+			container.addChild(restartButton);
+			restartButton.addEventListener(TouchEvent.TOUCH,onTouch);
+			
 			
 			
 			upButton = new Button(AssetsController.getAtlas().getTexture("btUp"));
@@ -119,6 +131,7 @@ package Controllers
 		}
 		
 		private var debugKey:Boolean = false;
+		private var restartButton:Button;
 		private function keyEvent(e:KeyboardEvent):void
 		{
 			// TODO This Code is for just debugging
@@ -157,6 +170,11 @@ package Controllers
 			
 			if(e.getTouch(target, TouchPhase.BEGAN))
 			{
+				if(e.currentTarget == restartButton){
+					main.finishLevel();
+					return;
+				}
+				
 				if(e.currentTarget == upButton)
 					main.playerAction2 = main.player.moveUp;
 				

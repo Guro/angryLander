@@ -13,6 +13,8 @@ package Controllers
 	import Objects.Platform;
 	import Objects.Player;
 	
+	import Screens.Game;
+	
 	import assets.levels.level1Data;
 	import assets.levels.level2Data;
 	
@@ -22,36 +24,22 @@ package Controllers
 	import nape.shape.Circle;
 	import nape.shape.Polygon;
 	
-	import starling.core.Starling;
 	import starling.display.Image;
-	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.filters.IdentityFilter;
-	import starling.filters.InverseFilter;
-	import starling.filters.SpotlightFilter;
-	import Screens.Game;
 	
 	public class LevelController extends Sprite
 	{
 		
-		[Embed(source="/assets/levels/level1.oel", mimeType="application/octet-stream")]
-		public static const level1:Class;
+		
+		// Level Data Classes
 		private var level1DataClass:level1Data;
-		[Embed(source="/assets/levels/level1Decor.png")]
-		public static const level1Decor:Class;
-		
-		
-		[Embed(source="/assets/levels/level2.oel", mimeType="application/octet-stream")]
-		public static const level2:Class;
 		private var level2DataClass:level2Data;
-		[Embed(source="/assets/levels/level2Decor.png")]
-		public static const level2Decor:Class;
 		
 		
 		
-		[Embed(source="/Assets/tmpStone.png")]
-		private var tmp:Class;
+		
+		
 		
 		
 		public var player:Player;
@@ -84,14 +72,12 @@ package Controllers
 		public function loadLevel(lvlNumber:int):void
 		{
 			this.levelNumber = lvlNumber;
-			var contentfile:ByteArray = new LevelController["level"+this.levelNumber]();
-			var contentstr:String = contentfile.readUTFBytes( contentfile.length );
-			_xml =  new XML(contentstr);
+			_xml =  new XML(AssetsController.getByteArray("level"+this.levelNumber));
 		
 			this.createLights();
 			
 			// Create Decor
-			decorImage = Image.fromBitmap(new LevelController["level"+this.levelNumber+"Decor"]());
+			decorImage = new Image(AssetsController.getTexture("level"+this.levelNumber+"Decor"));
 			addChild(decorImage);
 			
 			
@@ -112,7 +98,7 @@ package Controllers
 			/*
 			Temporarry Stone
 			*/
-			var bgImg:Image = Image.fromBitmap(new tmp());
+			var bgImg:Image = new Image(AssetsController.getTexture("tmp"));
 			//correct bg pos
 			addChild(bgImg);
 			bgImg.pivotX = 70;

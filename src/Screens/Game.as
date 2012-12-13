@@ -4,6 +4,7 @@ package Screens
 	
 	import flash.display.MovieClip;
 	
+	import Controllers.AssetsController;
 	import Controllers.ControlsController;
 	import Controllers.LevelController;
 	
@@ -26,9 +27,6 @@ package Screens
 	
 	public class Game extends Sprite
 	{
-		[Embed(source="/Assets/bg.jpg")]
-		private var bg:Class;
-		
 		public var space:Space;
 		private var mouseX:Number;
 		private var mouseY:Number;
@@ -71,7 +69,7 @@ package Screens
 			stageCont.touchable = false;	
 			
 			
-			var bgImg:Image = Image.fromBitmap(new bg());
+			var bgImg:Image = new Image(AssetsController.getTexture("bg"));
 			//correct bg pos
 			bgImg.x = -400;
 			bgImg.y = -200;
