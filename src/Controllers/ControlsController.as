@@ -21,13 +21,13 @@ package Controllers
 		public var upButton:Button;
 		public var leftButton:Button;
 		public var rightButton:Button;
-		public var main:Game;
+		public var game:Game;
 		public var gauge:Gauge;
 		public var hpGauge:Gauge;
 		
 		public function ControlsController(mn:Game)
 		{
-			main = mn;
+			game = mn;
 			
 			
 			
@@ -110,8 +110,8 @@ package Controllers
 			leftButton.addEventListener(TouchEvent.TOUCH,onTouch);
 			rightButton.addEventListener(TouchEvent.TOUCH,onTouch);
 			
-			main.stage.addEventListener(KeyboardEvent.KEY_DOWN,keyEvent);
-			main.stage.addEventListener(KeyboardEvent.KEY_UP,keyUpEvent);
+			game.stage.addEventListener(KeyboardEvent.KEY_DOWN,keyEvent);
+			game.stage.addEventListener(KeyboardEvent.KEY_UP,keyUpEvent);
 		}
 		
 		private function keyUpEvent(e:KeyboardEvent):void
@@ -137,16 +137,16 @@ package Controllers
 			// TODO This Code is for just debugging
 			var k:Boolean = false;
 			if(e.keyCode == 38 || e.keyCode == 87){
-				main.playerAction2 = main.player.moveUp;
+				game.playerAction2 = game.player.moveUp;
 				k = true;
 			}
 			if(e.keyCode == 37  || e.keyCode == 65){
-				main.playerAction = main.player.moveLeft;
+				game.playerAction = game.player.moveLeft;
 				k = true;
 			}
 			
 			if(e.keyCode == 39  || e.keyCode == 68){
-				main.playerAction = main.player.moveRight;
+				game.playerAction = game.player.moveRight;
 				k = true;
 			}
 			if(k && !debugKey){
@@ -171,18 +171,18 @@ package Controllers
 			if(e.getTouch(target, TouchPhase.BEGAN))
 			{
 				if(e.currentTarget == restartButton){
-					main.finishLevel();
+					game.finishLevel();
 					return;
 				}
 				
 				if(e.currentTarget == upButton)
-					main.playerAction2 = main.player.moveUp;
+					game.playerAction2 = game.player.moveUp;
 				
 				if(e.currentTarget == leftButton)
-					main.playerAction = main.player.moveLeft;
+					game.playerAction = game.player.moveLeft;
 				
 				if(e.currentTarget == rightButton)
-					main.playerAction = main.player.moveRight;	
+					game.playerAction = game.player.moveRight;	
 				
 				SoundsController.playSound("shhSound");
 
@@ -201,20 +201,27 @@ package Controllers
 		private function stopMove(mode:String="both"):void
 		{	
 			
-			main.player.stopParticles();
+			game.player.stopParticles();
 			
 			switch (mode){
 				case "both":
-					main.playerAction  = null;
-					main.playerAction2 = null;
+					game.playerAction  = null;
+					game.playerAction2 = null;
 					break;
 				case "up":
-					main.playerAction2 = null;
+					game.playerAction2 = null;
 					break;
 				case "leftRight":
-					main.playerAction  = null;
+					game.playerAction  = null;
 					break;	
 			}
+		}
+		
+		public function kill():void
+		{
+			game.stage.removeEventListener(KeyboardEvent.KEY_DOWN,keyEvent);
+			game.stage.removeEventListener(KeyboardEvent.KEY_UP,keyUpEvent);
+			this.removeFromParent(true);
 		}
 	}
 }

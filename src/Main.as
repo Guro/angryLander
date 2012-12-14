@@ -23,7 +23,7 @@ package
 		public var curScreen:Sprite;
 		
 		// Public config Vars
-		public var maxLevels:Number = 2;
+		public var maxLevels:Number = 3;
 		
 		// All Available Screens
 		public var levels:Levels;
@@ -61,6 +61,7 @@ package
 			
 			trace("ChangeLvel");
 			removeChild(this.curScreen);
+			
 			this.curScreen.dispose();
 			this.curScreen = null;
 			System.gc();

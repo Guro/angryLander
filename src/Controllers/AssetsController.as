@@ -54,6 +54,11 @@ package Controllers
 		[Embed(source="/assets/levels/level2Decor.png")]
 		public static const level2Decor:Class;
 		
+		[Embed(source="/assets/levels/level3.oel", mimeType="application/octet-stream")]
+		public static const level3:Class;
+		[Embed(source="/assets/levels/level3Decor.png")]
+		public static const level3Decor:Class;
+		
 		
 		public static function getAtlas():TextureAtlas
 		{

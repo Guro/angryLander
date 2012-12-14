@@ -128,8 +128,10 @@ package Screens
 		// finish Level
 		public function finishLevel():void
 		{
+			trace("Finish Level");
+			controls.kill();
 			Starling.current.stage.removeChild(stageCont);
-			Starling.current.stage.removeChild(controls);
+			this.removeFromParent(true);
 			this.main.changeScreen("Levels");
 		}
 		

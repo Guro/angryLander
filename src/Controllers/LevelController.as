@@ -15,8 +15,7 @@ package Controllers
 	
 	import Screens.Game;
 	
-	import assets.levels.level1Data;
-	import assets.levels.level2Data;
+	import assets.levels.*;
 	
 	import nape.geom.Vec2;
 	import nape.phys.Body;
@@ -35,6 +34,7 @@ package Controllers
 		// Level Data Classes
 		private var level1DataClass:level1Data;
 		private var level2DataClass:level2Data;
+		private var level3DataClass:level3Data;
 		
 		
 		
