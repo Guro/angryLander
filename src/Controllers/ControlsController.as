@@ -4,6 +4,7 @@ package Controllers
 	
 	import Screens.Game;
 	
+	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -65,8 +66,8 @@ package Controllers
 			
 			// Controls Container
 			container 	= new Sprite;
-			container.x = 870;
-			container.y = 600;
+			container.x = 0;
+			container.y = 0;
 			
 			addChild(container);
 			
@@ -75,8 +76,8 @@ package Controllers
 			restartButton = new Button(AssetsController.getAtlas().getTexture("btUp"));
 			restartButton.scaleX 	= 1.5;
 			restartButton.scaleY 	= 1.5;
-			restartButton.x		 	= -800;
-			restartButton.y		 	= -600;
+			restartButton.x		 	= 30;
+			restartButton.y		 	= 30;
 			container.addChild(restartButton);
 			restartButton.addEventListener(TouchEvent.TOUCH,onTouch);
 			
@@ -86,24 +87,24 @@ package Controllers
 			upButton.name = "up";
 			upButton.scaleX 	= 1.5;
 			upButton.scaleY 	= 1.5;
-			upButton.x		 	= -850;
-			upButton.y		 	= 60;
+			upButton.x		 	= 10;
+			upButton.y		 	= Constants.STAGE_HEIGHT-100;
 			container.addChild(upButton);
 			
 			leftButton = new Button(AssetsController.getAtlas().getTexture("btLeft"));
 			leftButton.name = "left";
 			leftButton.scaleX 		= 1.5;
 			leftButton.scaleY	 	= 1.5;
-			leftButton.y		 	= 60;
-			leftButton.x			= -50;
+			leftButton.y		 	= upButton.y;
+			leftButton.x			= Constants.STAGE_WIDTH-200;
 			container.addChild(leftButton);
 			
 			rightButton = new Button(AssetsController.getAtlas().getTexture("btRight"));
 			rightButton.name = "right";
 			rightButton.scaleX	 = 1.5;
 			rightButton.scaleY	 = 1.5;
-			rightButton.y		 = 60;
-			rightButton.x		 = 60;
+			rightButton.y		 = upButton.y;
+			rightButton.x		 = Constants.STAGE_WIDTH-100;
 			container.addChild(rightButton);
 			
 			upButton.addEventListener(TouchEvent.TOUCH,onTouch);

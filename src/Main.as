@@ -1,17 +1,13 @@
 package
 {
 	import flash.system.System;
-	
-	import Controllers.AssetsController;
-	
-	import Objects.Lightning;
-	
+
+		
 	import Screens.Game;
 	import Screens.Levels;
 	
 	import starling.core.Starling;
 	import starling.display.Image;
-	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
@@ -78,7 +74,7 @@ package
 			Starling.juggler.delayCall(function():void{
 				trace("Delay Call");
 				addChild(curScreen);
-				Starling.current.stage.addChildAt(Starling.current.mStatsDisplay,Starling.current.stage.numChildren);
+				//Starling.current.stage.addChildAt(Starling.current.mStatsDisplay,Starling.current.stage.numChildren);
 			},0.5);
 		}
 		

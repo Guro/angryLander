@@ -7,7 +7,9 @@ package
 	
 	import starling.core.Starling;
 	
-	[SWF(frameRate=60, width=1024, height=768, backgroundColor=0x000000)]
+	
+	
+	[SWF(frameRate=60,  backgroundColor=0x000000)]
 	public class FingerSoccer extends Sprite
 	{
 		public function FingerSoccer()
@@ -21,14 +23,16 @@ package
 			var screenHeight:int = stage.fullScreenHeight;
 			var viewPort:Rectangle = new Rectangle(0, 0, screenWidth, screenHeight)
 			
+//			var viewPort:Rectangle = RectangleUtil.fit(
+//				new Rectangle(0, 0, 1024, 768),
+//				new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight));
+			
 			Starling.multitouchEnabled = true;
 			
 				
 			var star:Starling = new Starling(Main, stage, viewPort);
-			
-			
-			star.stage.stageWidth  = 1024;
-			star.stage.stageHeight = 768;
+			star.stage.stageWidth  = Constants.STAGE_WIDTH;
+			star.stage.stageHeight = Constants.STAGE_HEIGHT;
 			star.showStats = true;
 			star.start();
 			

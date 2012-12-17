@@ -25,7 +25,6 @@ package Screens
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.filters.SpotlightFilter;
 	
 	public class Game extends Sprite
 	{
@@ -52,7 +51,6 @@ package Screens
 		public var itListener:InteractionListener;
 		public var itListenerSensor:InteractionListener;
 		private var lv:LevelController;
-		private var sF:SpotlightFilter;
 		private var main:Main;
 		
 		public function Game(mn:Main,curLevel)
