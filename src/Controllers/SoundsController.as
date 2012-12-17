@@ -47,7 +47,9 @@ package Controllers
 		{
 			if(!enabled)
 				return;
-			
+			if(!gameSoundChannels[name])
+				return;
+				
 			gameSoundChannels[name].stop();
 		}
 	}

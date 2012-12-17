@@ -82,6 +82,7 @@ package Objects
 			// Reset Fuel and HP Gauge
 			//main.controls.hpGauge.ratio = 1;
 			//main.controls.gauge.ratio 	= 1;
+			
 		}
 		
 		private function updateGraphics(b:Body):void
@@ -149,7 +150,7 @@ package Objects
 		
 		public function startParticles():void
 		{
-			mParticleSystem.maxNumParticles = 50;
+			mParticleSystem.maxNumParticles = 25;
 			
 			// add it to the stage and the juggler
 			Starling.juggler.add(mParticleSystem);
@@ -161,7 +162,7 @@ package Objects
 		public function stopParticles():void
 		{
 			
-			mParticleSystem.maxNumParticles = 5;
+			mParticleSystem.maxNumParticles = 1;
 			
 			TweenLite.to(this.body,1,{rotation:0,onComplete:function():void{
 					// Remove From Juggler

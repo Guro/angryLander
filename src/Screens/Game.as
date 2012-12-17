@@ -7,6 +7,7 @@ package Screens
 	import Controllers.AssetsController;
 	import Controllers.ControlsController;
 	import Controllers.LevelController;
+	import Controllers.SoundsController;
 	
 	import Objects.Player;
 	
@@ -20,6 +21,7 @@ package Screens
 	import nape.util.ShapeDebug;
 	
 	import starling.core.Starling;
+	import starling.display.BlendMode;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -69,11 +71,12 @@ package Screens
 			stageCont.touchable = false;	
 			
 			
-			var bgImg:Image = new Image(AssetsController.getTexture("bg"));
+			var bgImg:Image = new Image(AssetsController.getTexture("bg2"));
 			//correct bg pos
-			bgImg.x = -400;
-			bgImg.y = -200;
+			bgImg.x = -900;
+			bgImg.y = 0;
 			bgImg.touchable = false;
+			bgImg.blendMode = BlendMode.NONE;
 			
 			addChild(bgImg);
 			
@@ -97,20 +100,19 @@ package Screens
 			// Camera
 			Starling.current.stage.addChild(stageCont);
 			camera = new StarlingCameraFocus( Starling.current.stage, stageCont,
-				player.container, [ {name:'bg',instance:bgImg,ratio:0.1}
+				player.container, [ {name:'bg',instance:bgImg,ratio:0.15}
 				], true );
 			//camera.setFocusPosition(0,0);
 			
 			this.createControls();
 			
-//			sF = new SpotlightFilter(0,0,1,1);
+//			sF = new SpotlightFilter(0,0,0.7,2,0.5);
 //			stageCont.filter = sF;
-			//bgImg.filter = sF;
-//			
+//			bgImg.filter = sF;			
 			
 
 			
-			//Sounds.playSound("loopSound",9999);
+			//SoundsController.playSound("loopSound",9999);
 			//camera.zoomFocus(0.7);
 			
 			camera.setBoundary(lv.decorImage);
@@ -192,8 +194,8 @@ package Screens
 				controls.dispose();
 			}
 			
-//			sF.centerX = player.body.graphic.x;
-//			sF.centerY = player.body.graphic.y;
+			//sF.centerX = player.body.graphic.x/2;
+			//sF.centerY = player.body.graphic.y/3;
 			
 			
 			camera.update();

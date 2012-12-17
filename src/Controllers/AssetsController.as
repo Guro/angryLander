@@ -33,6 +33,9 @@ package Controllers
 		[Embed(source="/assets/bg.jpg")]
 		public static const bg:Class;
 		
+		[Embed(source="/assets/bg2.jpg")]
+		public static const bg2:Class;
+		
 		[Embed(source="/assets/tmpStone.png")]
 		public static const tmp:Class;
 		

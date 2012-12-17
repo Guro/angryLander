@@ -37,6 +37,7 @@ package Objects
 			lightMC.pivotY = lightMC.width/2;
 			lightMC.x = opts.x;
 			lightMC.y = opts.y;
+			lightMC.rotation = opts.rotation;
 			lightMC.visible = false;
 			
 			setInterval(toggle,3000);

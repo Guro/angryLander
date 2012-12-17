@@ -200,9 +200,7 @@ package Controllers
 		
 		private function stopMove(mode:String="both"):void
 		{	
-			
 			game.player.stopParticles();
-			
 			switch (mode){
 				case "both":
 					game.playerAction  = null;

@@ -41,7 +41,8 @@ package Objects
 			
 			
 			
-			addChild(coinImage);
+			addChild(coinImage)
+			this.flatten();
 		}
 		
 		private function loop(e:Event):void

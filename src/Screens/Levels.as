@@ -1,7 +1,12 @@
 package Screens
 {
+	import com.greensock.TweenLite;
+	
 	import Controllers.AssetsController;
 	
+	import starling.animation.Tween;
+	import starling.core.Starling;
+	import starling.display.BlendMode;
 	import starling.display.Button;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -37,10 +42,11 @@ package Screens
 		{
 			var bgImg:Image = new Image(AssetsController.getTexture("bg"));
 			bgImg.touchable = false;
+			bgImg.blendMode = BlendMode.NONE;
 			addChild(bgImg);
 			
 			addChild(allButtons);
-			allButtons.y = 180;
+			allButtons.y = -200;
 			allButtons.x = 100;
 			
 		
@@ -65,10 +71,11 @@ package Screens
 				
 				upButton.name = ""+(i+1);
 				if(i >= 5){
-					upButton.y		= 180;
+					TweenLite.to(upButton,0.2,{y:600,delay:0.1*i});
 					upButton.x		= (i*170)-850;
 				}else{
-					upButton.x		 	= i*170;
+					TweenLite.to(upButton,0.2,{y:400,delay:0.1*i});
+					upButton.x		= i*170;
 				}
 				allButtons.addChild(upButton);
 				

@@ -149,6 +149,7 @@ package Controllers
 			{
 				var light:Lightning = new Lightning(main,{
 					x:c.@x,
+					rotation:c.@rotation,
 					y:c.@y
 				});
 				addChild(light);
