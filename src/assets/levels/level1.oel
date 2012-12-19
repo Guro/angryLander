@@ -1,6 +1,7 @@
 <level width="1024" height="768">
   <Objects>
     <player id="0" x="80" y="140" />
+    <!-- <platform id="1" x="1800" y="360" /> -->
     <platform id="1" x="1800" y="360" />
     <coin id="2" x="256" y="400" />
     <coin id="3" x="480" y="240" />

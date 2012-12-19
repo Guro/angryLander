@@ -74,11 +74,12 @@ package Objects
 			this.body.position = new Vec2(options.x,options.y);
 			this.body.space   = space;
 			this.body.cbTypes.add(main.collision);
-			this.body.graphic 			= container;
-			this.body.graphicUpdate 	= updateGraphics;
+			this.body.userData.graphic 			= container;
+			
 			
 			var fn:Body = new Body(BodyType.STATIC,new Vec2(options.x,options.y-20));
 			var p:Polygon = new Polygon(Polygon.rect(-20,-5,40,10),null,new InteractionFilter(0));
+			p.sensorEnabled = true;
 			fn.shapes.add(p);
 			fn.space = space;
 			fn.cbTypes.add(main.sensor);
@@ -87,18 +88,14 @@ package Objects
 
 			
 			
+			this.body.userData.graphic.x 		= this.body.position.x;
+			this.body.userData.graphic.y 		= this.body.position.y;
+			this.body.userData.graphic.rotation	= this.body.rotation;
 			
-			addChild(this.body.graphic);
+			addChild(this.body.userData.graphic);
 			
 		}
 		
-		
-		private function updateGraphics(b:Body):void
-		{
-			b.graphic.x 		= b.position.x;
-			b.graphic.y 		= b.position.y;
-			b.graphic.rotation	= b.rotation;
-		}
 	
 	
 	}

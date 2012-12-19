@@ -40,5 +40,11 @@ package
 			trace ("FINISH");
 			this.main.space.listeners.remove(itListenerSensor);
 		}
+		
+		private function crashCollision(cb:InteractionCallback):void
+		{
+			trace ("Crash Collision");
+			
+		}
 	}
 }

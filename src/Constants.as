@@ -8,6 +8,7 @@ package
 		
 		
 		public static const STAGE_WIDTH:int  = 1024;
+		//public static const STAGE_HEIGHT:int = 768;
 		public static const STAGE_HEIGHT:int = 683;
 	}
 }

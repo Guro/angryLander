@@ -28,9 +28,9 @@ public class level2Data {
 		var bounds:Rectangle = graphic.getBounds(graphic);
 		var offset:Vec2 = Vec2.get(bounds.x-xret.anchor.x, bounds.y-xret.anchor.y);
 
-		ret.graphic = graphic;
-		ret.graphicUpdate = function(b:Body):void {
-			var gp:Vec2 = b.localToWorld(offset);
+		ret.userData.graphic = graphic;
+		ret.userData.graphicUpdate = function(b:Body):void {
+			var gp:Vec2 = b.localPointToWorld(offset);
 			graphic.x = gp.x;
 			graphic.y = gp.y;
 			graphic.rotation = (b.rotation*180/Math.PI)%360;

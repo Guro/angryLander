@@ -15,8 +15,12 @@ package Controllers
 	
 	import Screens.Game;
 	
-	import assets.levels.*;
+	import assets.levels.level1Data;
+	import assets.levels.level2Data;
+	import assets.levels.level3Data;
+	import assets.levels.level4Data;
 	
+	import nape.constraint.PivotJoint;
 	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
@@ -35,6 +39,7 @@ package Controllers
 		private var level1DataClass:level1Data;
 		private var level2DataClass:level2Data;
 		private var level3DataClass:level3Data;
+		private var level4DataClass:level4Data;
 		
 		
 		
@@ -45,7 +50,7 @@ package Controllers
 		public var player:Player;
 		public var platform:Platform;
 		public var coins:Sprite;
-		public var main:Game;
+		public var game:Game;
 		public var score:Number = 0;
 		public var levelNumber:int;
 		public var decorImage:Image;
@@ -55,14 +60,15 @@ package Controllers
 		private var goodLanding:Boolean = false;
 		private var boomImage:Sprite;
 		private var finished:Boolean = false;
+		private var handJoint:PivotJoint;
 		
 		
 		public function LevelController(mn:Game)
 		{
-			main = mn;	
+			game = mn;	
 			
-			main.addEventListener("pyFinishTouch",finishTouched);
-			main.addEventListener("pyCrashCollision",crashCollision);
+			game.addEventListener("pyFinishTouch",finishTouched);
+			game.addEventListener("pyCrashCollision",crashCollision);
 			
 			
 		}
@@ -90,7 +96,7 @@ package Controllers
 			// Create Borders
 			var borders:Body = new Body(BodyType.STATIC);
 			borders.shapes.add(new Polygon(Polygon.rect(-30,-10,20,800))); 		//left
-			borders.space = main.space;
+			borders.space = game.space;
 			
 			
 			
@@ -107,10 +113,16 @@ package Controllers
 			
 			var floor:Body = new Body(BodyType.DYNAMIC,new Vec2(1000,200));
 			floor.shapes.add(new Circle(70)); 	//bottom
-			floor.space = main.space;
+			floor.space = game.space;
 			floor.mass = 1.5;
-			floor.graphic = bgImg;
-			floor.graphicUpdate = updateGraphics;
+			floor.userData.graphic = bgImg;
+			floor.userData.graphicUpdate = updateGraphics;
+			
+//			handJoint = new PivotJoint(game.space.world, null, Vec2.weak(), Vec2.weak());
+//			handJoint.space = game.space;
+//			handJoint.active = false;
+			//handJoint.stiff = false;
+			
 			
 		}
 		
@@ -127,17 +139,17 @@ package Controllers
 				trace(c.@id);
 				var b:Body = dataClass.createBody(c.@id);
 				b.position = new Vec2(c.@x,c.@y);
-				b.space   = main.space;
-				b.cbTypes.add(main.collision);
+				b.space   = game.space;
+				b.cbTypes.add(game.collision);
 			}	
 		}
 		
 		// Update Graphics for templorarry stone
 		private function updateGraphics(b:Body):void
 		{
-			b.graphic.x 		= b.position.x;
-			b.graphic.y 		= b.position.y;
-			b.graphic.rotation	= b.rotation;
+			b.userData.graphic.x 		= b.position.x;
+			b.userData.graphic.y 		= b.position.y;
+			b.userData.graphic.rotation	= b.rotation;
 			
 		}
 		
@@ -147,7 +159,7 @@ package Controllers
 		{
 			for each(var c:Object in _xml.Objects.lightning)
 			{
-				var light:Lightning = new Lightning(main,{
+				var light:Lightning = new Lightning(game,{
 					x:c.@x,
 					rotation:c.@rotation,
 					y:c.@y
@@ -163,14 +175,14 @@ package Controllers
 			for each(var c:Object in _xml.Objects.coin)
 			{
 				//trace("Bla:"+c.@id);
-				var coin:Coin = new Coin(main,{
+				var coin:Coin = new Coin(game,{
 					x:c.@x,
 					y:c.@y
 				});
 				coins.addChild(coin);
 			}
 			addChild(coins);
-			main.addEventListener("coinCollected",coinCollected);
+			game.addEventListener("coinCollected",coinCollected);
 		}
 		
 		
@@ -187,11 +199,11 @@ package Controllers
 		// Create Player
 		private function createPlayer():void
 		{
-			player = new Player(main,{
+			player = new Player(game,{
 				x:_xml.Objects.player.attribute("x"),
 				y:_xml.Objects.player.attribute("y")
 			});
-			main.player = player;
+			game.player = player;
 			addChild(player);
 			
 		}
@@ -199,7 +211,7 @@ package Controllers
 		// Create Finish Platform
 		private function createPlatform():void
 		{
-			platform = new Platform(main.space,main.stage,main,{
+			platform = new Platform(game.space,game.stage,game,{
 				x:_xml.Objects.platform.attribute("x"),
 				y:_xml.Objects.platform.attribute("y")
 			});
@@ -210,17 +222,18 @@ package Controllers
 		
 		private function finishTouched(e:Event):void
 		{
+			trace("Finish Touched");
 			if(!this.goodLanding)
 				return;
 			if(this.finished)
 				return;
 			
-			trace("Finish Touched Inside Level Controller");
+			trace("With Good Landing");
 			this.finished = true;
-			main.space.listeners.remove(main.itListenerSensor);
-			TweenLite.to(main.player,1,{alpha:0,delay:1.5});
-			TweenLite.to(platform.body.graphic,1,{alpha:0,delay:1.5,onComplete:function():void{
-				main.finishLevel();
+			game.space.listeners.remove(game.itListenerSensor);
+			TweenLite.to(game.player,1,{alpha:0,delay:1.5});
+			TweenLite.to(platform.body.userData.graphic,1,{alpha:0,delay:1.5,onComplete:function():void{
+				game.finishLevel();
 			}});
 			
 			
@@ -229,7 +242,8 @@ package Controllers
 		
 		private function crashCollision(e:Event):void
 		{
-			var vel:Number = Math.round(this.main.player.body.velocity.y);
+			
+			var vel:Number = Math.round(this.game.player.body.velocity.y);
 			if(vel > -40 && vel < 40){
 				this.goodLanding = true;
 			}else{
@@ -239,11 +253,11 @@ package Controllers
 
 
 				//Sounds.playSound("boomSound");
-				main.camera.shake(0.07,30);
-				//main.player.consumeFuel(30);
+				game.camera.shake(0.07,30);
+				//game.player.consumeFuel(30);
 				
 				//trace("remove listener");
-				//main.space.listeners.remove(main.itListener);
+				//game.space.listeners.remove(game.itListener);
 			}
 			
 		}

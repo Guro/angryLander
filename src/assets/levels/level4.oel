@@ -1,0 +1,11 @@
+<level width="1024" height="768">
+  <Objects>
+    <player id="0" x="430" y="160" />
+    <platform id="1" x="1800" y="416" />
+    <coin id="2" x="400" y="570" />
+    <coin id="3" x="960" y="1380" />
+    <coin id="4" x="100" y="1850" />
+    <coin id="5" x="1130" y="470" />
+    <mount id="level4Decor" x="0" y="0" />
+  </Objects>
+</level>

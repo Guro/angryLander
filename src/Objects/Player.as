@@ -69,15 +69,15 @@ package Objects
 			//this.body.shapes.add(new Polygon(Polygon.rect(-50,-35,100,70),new Material(1)));
 			this.body.shapes.add(new Circle(40,null,new Material(1)));
 			this.body.space = main.space;
-			this.body.graphic 			= container;
-			this.body.graphicUpdate 	= updateGraphics;
+			this.body.userData.graphic 			= container;
+			this.body.userData.graphicUpdate 	= updateGraphics;
 			
 			// Add cbTypes
 			
 			this.body.cbTypes.add(main.collision);
 			this.body.cbTypes.add(main.sensor);
 			
-			addChild(this.body.graphic);
+			addChild(this.body.userData.graphic);
 			
 			// Reset Fuel and HP Gauge
 			//main.controls.hpGauge.ratio = 1;
@@ -87,9 +87,9 @@ package Objects
 		
 		private function updateGraphics(b:Body):void
 		{
-			b.graphic.x 		= b.position.x;
-			b.graphic.y 		= b.position.y;
-			b.graphic.rotation	= b.rotation;
+			b.userData.graphic.x 		= b.position.x;
+			b.userData.graphic.y 		= b.position.y;
+			b.userData.graphic.rotation	= b.rotation;
 			mParticleSystem.emitterX = b.position.x;
 			mParticleSystem.emitterY = b.position.y;
 			
@@ -112,7 +112,8 @@ package Objects
 		public function moveUp():void
 		{
 			//this.body.applyLocalForce(new Vec2(0,-3000),new Vec2(0,0));
-			this.body.applyLocalImpulse(new Vec2(0,-50), new Vec2(0,0));
+			this.body.applyImpulse(new Vec2(0,-50));
+			
 			
 			this.startParticles();
 			TweenLite.to(this.body,1,{rotation:0});
@@ -124,13 +125,13 @@ package Objects
 		public function moveLeft():void
 		{
 			//this.body.applyLocalForce(new Vec2(-1000,-1600),new Vec2(0,0));
-			this.body.applyLocalImpulse(new Vec2(-30,-15), new Vec2(0,0));
+			this.body.applyImpulse(new Vec2(-30,-15));
 			
 			
 			
 			this.startParticles();
 			//this.body.rotation = -0.1;
-			this.body.graphic.scaleX = -1;
+			this.body.userData.graphic.scaleX = -1;
 			TweenLite.to(this.body,1,{rotation:-0.3});
 			consumeFuel(fuelConsumption);
 		}
@@ -138,11 +139,11 @@ package Objects
 		public function moveRight():void
 		{
 			//this.body.applyLocalForce(new Vec2(1000,-1600),new Vec2(0,0));
-			this.body.applyLocalImpulse(new Vec2(30,-15), new Vec2(0,0));
+			this.body.applyImpulse(new Vec2(30,-15));
 			
 			
 			this.startParticles();
-			this.body.graphic.scaleX = 1;
+			this.body.userData.graphic.scaleX = 1;
 			TweenLite.to(this.body,1,{rotation:0.3});
 			consumeFuel(fuelConsumption);
 		}
@@ -168,7 +169,6 @@ package Objects
 					// Remove From Juggler
 					Starling.juggler.remove(mParticleSystem);
 					mParticleSystem.stop();
-					trace("Completed");
 				}});
 			SoundsController.stopSound("shhSound");
 		}

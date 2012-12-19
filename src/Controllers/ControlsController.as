@@ -140,6 +140,7 @@ package Controllers
 			if(e.keyCode == 38 || e.keyCode == 87){
 				game.playerAction2 = game.player.moveUp;
 				k = true;
+				
 			}
 			if(e.keyCode == 37  || e.keyCode == 65){
 				game.playerAction = game.player.moveLeft;

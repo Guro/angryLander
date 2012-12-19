@@ -19,7 +19,7 @@ package
 		public var curScreen:Sprite;
 		
 		// Public config Vars
-		public var maxLevels:Number = 3;
+		public var maxLevels:Number = 4;
 		
 		// All Available Screens
 		public var levels:Levels;

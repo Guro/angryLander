@@ -17,6 +17,7 @@ package Screens
 	import nape.callbacks.InteractionListener;
 	import nape.callbacks.InteractionType;
 	import nape.geom.Vec2;
+	import nape.phys.Body;
 	import nape.space.Space;
 	import nape.util.ShapeDebug;
 	
@@ -60,6 +61,7 @@ package Screens
 			this.maxLevels 	= this.main.maxLevels;
 			
 			addEventListener(Event.ADDED_TO_STAGE,onAdded);
+
 		}
 		
 		private function onAdded(e:Event):void
@@ -72,7 +74,7 @@ package Screens
 			var bgImg:Image = new Image(AssetsController.getTexture("bg2"));
 			//correct bg pos
 			bgImg.x = -900;
-			bgImg.y = 0;
+			bgImg.y = -900;
 			bgImg.touchable = false;
 			bgImg.blendMode = BlendMode.NONE;
 			
@@ -111,7 +113,12 @@ package Screens
 
 			
 			//SoundsController.playSound("loopSound",9999);
-			//camera.zoomFocus(0.7);
+			
+//			camera.zoomFocus(0.5);
+//			Starling.juggler.delayCall(function():void{
+//				camera.zoomFocus(1);
+//			},3);
+			
 			
 			camera.setBoundary(lv.decorImage);
 
@@ -131,6 +138,8 @@ package Screens
 			trace("Finish Level");
 			controls.kill();
 			Starling.current.stage.removeChild(stageCont);
+			if(this.enableDebugDraw)
+				this.debug.clear();
 			this.removeFromParent(true);
 			this.main.changeScreen("Levels");
 		}
@@ -199,6 +208,12 @@ package Screens
 			camera.update();
 			space.step(1/60);
 			
+			for (var i:int = 0; i < space.liveBodies.length; i++) {
+				var body:Body = space.liveBodies.at(i);
+				if (body.userData.graphicUpdate) {
+					body.userData.graphicUpdate(body);
+				}
+			}
 			
 			if(this.enableDebugDraw)
 			{

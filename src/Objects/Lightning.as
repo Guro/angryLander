@@ -66,7 +66,7 @@ package Objects
 		{
 			if(main.player.container.bounds.intersects(new Rectangle(lightMC.x-20,lightMC.y,lightMC.width/2,lightMC.height)))
 			{
-				main.player.body.applyLocalImpulse(new Vec2(-1400,0), new Vec2(0,0));
+				main.player.body.applyImpulse(new Vec2(-1400,0), new Vec2(0,0));
 				main.camera.shake(0.03,30);
 			}
 		}
