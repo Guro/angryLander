@@ -1,5 +1,6 @@
 angryLander
 ===========
 
-Game made on Starling AS3
+Game made on Starling framework (AS3 - Stage3D)
+
 Unfinished
